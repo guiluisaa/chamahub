@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should match snapchat 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <PersistGate
+    loading={null}
+    persistor={
+      Object {
+        "dispatch": [Function],
+        "flush": [Function],
+        "getState": [Function],
+        "pause": [Function],
+        "persist": [Function],
+        "purge": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  >
+    <Component
+      theme={
+        Object {
+          "borderRadius": Object {
+            "default": "3px",
+          },
+          "breakpoint": Object {
+            "lg": 992,
+            "md": 768,
+            "sm": 576,
+            "xl": 1300,
+          },
+          "color": Object {
+            "background": "#fff",
+            "black": "#424242",
+            "border": "rgba(0,0,0,0.1)",
+            "danger": "#FF5B68",
+            "primary": "#406ae0",
+            "secondary": "#eb7338",
+            "success": "#2AD178",
+            "warning": "#FABD59",
+            "white": "#FFF",
+          },
+          "font": Object {
+            "color": Object {
+              "primary": "#424242",
+              "secondary": "#969696",
+            },
+            "family": Object {
+              "primary": "'Inter', sans-serif",
+            },
+            "weight": Object {
+              "bold": 700,
+              "regular": 400,
+            },
+          },
+        }
+      }
+    >
+      <Routes />
+    </Component>
+  </PersistGate>
+</Provider>
+`;
