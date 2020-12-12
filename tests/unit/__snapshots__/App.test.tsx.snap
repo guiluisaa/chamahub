@@ -31,8 +31,15 @@ exports[`<App /> should match snapchat 1`] = `
     <Component
       theme={
         Object {
-          "borderRadius": Object {
-            "default": "3px",
+          "background": Object {
+            "color": Object {
+              "primary": "#f9f9f9",
+              "secondary": "#FFF",
+            },
+          },
+          "border": Object {
+            "color": "#969696",
+            "radius": "3px",
           },
           "breakpoint": Object {
             "lg": 992,
@@ -41,10 +48,9 @@ exports[`<App /> should match snapchat 1`] = `
             "xl": 1300,
           },
           "color": Object {
-            "background": "#fff",
             "black": "#424242",
-            "border": "rgba(0,0,0,0.1)",
             "danger": "#FF5B68",
+            "gray": "#969696",
             "primary": "#406ae0",
             "secondary": "#eb7338",
             "success": "#2AD178",
@@ -56,14 +62,13 @@ exports[`<App /> should match snapchat 1`] = `
               "primary": "#424242",
               "secondary": "#969696",
             },
-            "family": Object {
-              "primary": "'Inter', sans-serif",
-            },
+            "family": "'Inter', sans-serif",
             "weight": Object {
               "bold": 700,
               "regular": 400,
             },
           },
+          "theme": "light",
         }
       }
     >

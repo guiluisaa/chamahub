@@ -2,7 +2,7 @@
 
 exports[`<Paragraph /> should match snapchat 1`] = `
 .c0 {
-  font-family: primary:'Inter',sans-serif;
+  font-family: 'Inter',sans-serif;
   color: #424242;
   font-size: 14px;
   line-height: 19px;
@@ -17,7 +17,7 @@ exports[`<Paragraph /> should match snapchat 1`] = `
 
 exports[`<Title /> should match snapchat 1`] = `
 .c0 {
-  font-family: primary:'Inter',sans-serif;
+  font-family: 'Inter',sans-serif;
   color: #424242;
   font-size: 32px;
   line-height: 42px;
