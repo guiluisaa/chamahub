@@ -4,14 +4,16 @@ import { hot } from 'react-hot-loader';
 import { ThemeProvider } from 'styled-components';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { persistor, store } from './io/redux/store';
-import theme from './theme';
+import { darkTheme } from '@/themes';
+import { persistor, store } from '@/io/redux/store';
+import GlobalStyle from './shared-styles/GlobalStyle';
 import Routes from './Routes';
 
 const App: FC = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkTheme}>
+        <GlobalStyle />
         <Routes />
       </ThemeProvider>
     </PersistGate>
