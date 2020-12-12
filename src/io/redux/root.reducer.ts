@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({});
+import theme from './theme/theme.reducer';
+
+const rootReducer = combineReducers({
+  theme,
+});
 
 export type AppState = ReturnType<typeof rootReducer>;
 
