@@ -2,6 +2,11 @@
 
 exports[`<Layout /> should match snapchat 1`] = `
 <styled.div>
+  <button
+    onClick={[MockFunction]}
+  >
+    Toggle Theme
+  </button>
   <styled.div />
 </styled.div>
 `;

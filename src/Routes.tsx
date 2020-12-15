@@ -6,7 +6,7 @@ import { toLoadable } from '@/utils';
 import Layout from './components/layout/Layout.component';
 import GlobalStyle from './shared-styles/GlobalStyle';
 import { darkTheme, lightTheme } from './themes';
-import useTheme from './io/redux/theme/useTheme.hook';
+import useTheme from '@/io/redux/theme/useTheme.hook';
 
 // Lazy Loading Views
 const IndexView = toLoadable(() => import('@/views/index/Index.view'));

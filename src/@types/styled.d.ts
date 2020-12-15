@@ -6,6 +6,8 @@ import { Border } from '@/themes/tokens/border.token';
 import { Breakpoint } from '@/themes/tokens/breakpoint.token';
 import { ThemeType } from '@/themes/tokens/theme.token';
 import { Background } from '@/themes/tokens/background.token';
+import { ButtonToken } from '@/themes/tokens/button.token';
+import { InputToken } from '@/themes/tokens/input.token';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -16,5 +18,10 @@ declare module 'styled-components' {
     border: Border;
     breakpoint: Breakpoint;
     background: Background;
+
+    components: {
+      button: ButtonToken;
+      input: InputToken;
+    };
   }
 }
