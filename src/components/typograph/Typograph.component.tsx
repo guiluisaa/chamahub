@@ -19,5 +19,5 @@ export const Title = styled.h2`
 export const Paragraph = styled.p`
   ${BaseTypographCSS}
   font-size: 14px;
-  line-height: 19px;
+  line-height: 20px;
 `;

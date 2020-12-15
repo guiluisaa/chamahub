@@ -1,18 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Routes /> should match snapchat 1`] = `
-<BrowserRouter>
-  <Layout>
-    <Switch>
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/"
-      />
-      <Route
-        component={[Function]}
-      />
-    </Switch>
-  </Layout>
-</BrowserRouter>
+<Component
+  theme={
+    Object {
+      "background": Object {
+        "color": Object {
+          "primary": "#FFF",
+          "secondary": "#f9f9f9",
+        },
+      },
+      "border": Object {
+        "color": "#dde0e4",
+        "radius": "3px",
+      },
+      "breakpoint": Object {
+        "lg": 992,
+        "md": 768,
+        "sm": 576,
+        "xl": 1300,
+      },
+      "color": Object {
+        "black": "#121212",
+        "blue": "#406ae0",
+        "danger": "#FF5B68",
+        "darkGray": "#586069",
+        "deepBlack": "#000",
+        "deepGray": "#414141",
+        "gray": "#969696",
+        "lightGray": "#dde0e4",
+        "lightWhite": "#f9f9f9",
+        "success": "#2AD178",
+        "warning": "#FABD59",
+        "white": "#FFF",
+      },
+      "components": Object {
+        "button": Object {
+          "activeBackgroundColor": "#406ae0",
+          "activeBorderColor": "#406ae0",
+          "activeColor": "#FFF",
+          "backgroundColor": "#406ae0",
+          "borderColor": "#406ae0",
+          "color": "#FFF",
+          "hoverBackgroundColor": "#FFF",
+          "hoverBorderColor": "#FFF",
+          "hoverColor": "#406ae0",
+        },
+        "input": Object {
+          "backgroundColor": "#FFF",
+          "borderColor": "#dde0e4",
+          "color": "#121212",
+          "focusBorderColor": "#406ae0",
+          "placeholderColor": "#969696",
+        },
+      },
+      "font": Object {
+        "color": Object {
+          "primary": "#121212",
+          "secondary": "#586069",
+        },
+        "family": "'Inter', sans-serif",
+        "weight": Object {
+          "bold": 700,
+          "regular": 400,
+        },
+      },
+      "theme": "light",
+    }
+  }
+>
+  <Memo(l) />
+  <BrowserRouter>
+    <Layout>
+      <Switch>
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/"
+        />
+        <Route
+          component={[Function]}
+        />
+      </Switch>
+    </Layout>
+  </BrowserRouter>
+</Component>
 `;

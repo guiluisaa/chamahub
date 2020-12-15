@@ -2,8 +2,10 @@ import { DefaultTheme } from 'styled-components';
 
 import { borderRadius } from './tokens/border.token';
 import breakpoint from './tokens/breakpoint.token';
+import { lightThemeButton } from './tokens/button.token';
 import color from './tokens/color.token';
 import { fontWeight } from './tokens/font.token';
+import { lightThemeInput } from './tokens/input.token';
 
 const lightTheme: DefaultTheme = {
   theme: 'light',
@@ -14,22 +16,27 @@ const lightTheme: DefaultTheme = {
     weight: fontWeight,
     color: {
       primary: color.black,
-      secondary: color.gray,
+      secondary: color.darkGray,
     },
   },
 
   border: {
     radius: borderRadius,
-    color: color.gray,
+    color: color.lightGray,
   },
 
   breakpoint,
 
   background: {
     color: {
-      primary: '#f9f9f9',
-      secondary: color.white,
+      primary: color.white,
+      secondary: color.lightWhite,
     },
+  },
+
+  components: {
+    button: lightThemeButton,
+    input: lightThemeInput,
   },
 };
 

@@ -2,8 +2,10 @@ import { DefaultTheme } from 'styled-components';
 
 import { borderRadius } from './tokens/border.token';
 import breakpoint from './tokens/breakpoint.token';
+import { darkThemeButton } from './tokens/button.token';
 import color from './tokens/color.token';
 import { fontWeight } from './tokens/font.token';
+import { darkThemeInput } from './tokens/input.token';
 
 const darkTheme: DefaultTheme = {
   theme: 'dark',
@@ -28,8 +30,13 @@ const darkTheme: DefaultTheme = {
   background: {
     color: {
       primary: color.black,
-      secondary: '#000',
+      secondary: color.deepBlack,
     },
+  },
+
+  components: {
+    button: darkThemeButton,
+    input: darkThemeInput,
   },
 };
 
