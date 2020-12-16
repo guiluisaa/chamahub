@@ -61,7 +61,7 @@ exports[`<Routes /> should match snapchat 1`] = `
         },
         "family": "'Inter', sans-serif",
         "weight": Object {
-          "bold": 700,
+          "bold": 500,
           "regular": 400,
         },
       },
