@@ -5,46 +5,5 @@ exports[`<IndexView /> should match snapchat 1`] = `
   <styled.h2>
     Index
   </styled.h2>
-  <br />
-  <br />
-  <br />
-  <styled.button>
-    Search
-  </styled.button>
-  <br />
-  <br />
-  <br />
-  <styled.button
-    disabled={true}
-  >
-    Search
-  </styled.button>
-  <br />
-  <br />
-  <br />
-  <styled.button
-    block={true}
-  >
-    Search
-  </styled.button>
-  <br />
-  <br />
-  <br />
-  <styled.button
-    block={true}
-    isLoading={true}
-  >
-    Search
-  </styled.button>
-  <br />
-  <br />
-  <br />
-  <styled.button
-    block={true}
-    disabled={true}
-    isLoading={true}
-  >
-    Search
-  </styled.button>
 </Fragment>
 `;
