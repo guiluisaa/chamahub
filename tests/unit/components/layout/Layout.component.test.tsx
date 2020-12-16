@@ -3,11 +3,6 @@ import { shallow } from 'enzyme';
 
 import Layout from '@/components/layout/Layout.component';
 
-jest.mock('@/io/redux/theme/useTheme.hook', () => () => ({
-  theme: {},
-  toggleTheme: jest.fn(),
-}));
-
 describe('<Layout />', () => {
   it('should match snapchat', () => {
     const wrapper = shallow(<Layout />);
