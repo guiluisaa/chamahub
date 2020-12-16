@@ -16,5 +16,5 @@ export const fontFamily = "'Inter', sans-serif";
 
 export const fontWeight = {
   regular: 400,
-  bold: 700,
+  bold: 500,
 };
