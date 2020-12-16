@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.background.color.primary};
     color: ${({ theme }) => theme.font.color.primary};
+    font-family:${({ theme }) => theme.font.family};
   }
 `;
 
