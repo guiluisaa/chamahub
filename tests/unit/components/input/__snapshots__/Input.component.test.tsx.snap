@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> should match snapchat 1`] = `
+<input
+  className="sc-bdfBwQ kFbdgg"
+  placeholder="Type the username"
+/>
+`;
