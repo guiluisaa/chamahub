@@ -4,5 +4,5 @@ export type UserModel = {
   name: string;
   login: string;
   email: string;
-  bio: string;
+  bio: string | null;
 };
