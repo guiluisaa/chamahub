@@ -39,7 +39,7 @@ const lightTheme: DefaultTheme = {
     input: lightThemeInput,
     card: {
       backgroundColorPrimary: color.white,
-      backgroundColorSecondary: color.lightGray,
+      backgroundColorSecondary: color.lightWhite,
     },
   },
 };

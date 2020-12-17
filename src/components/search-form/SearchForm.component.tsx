@@ -69,8 +69,6 @@ const SearchForm: FC<SearchFormProps> = ({ onSubmit, isLoading }) => {
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(term);
-
-    console.log(location);
   };
 
   return (

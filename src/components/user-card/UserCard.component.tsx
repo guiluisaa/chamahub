@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { UserModel } from '@/models/User.model';
@@ -7,6 +7,8 @@ import {
   Title as AvatarAvatar,
 } from '../typograph/Typograph.component';
 import UserCardInfo from './UserCardInfo.component';
+import useUserRepos from '@/io/user/useUserRepos.hook';
+import UserCardRepos from './UserCardRepos.component';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) =>
@@ -17,7 +19,7 @@ const Wrapper = styled.div`
   border-radius: ${({ theme }) => theme.border.radius};
 
   width: 100%;
-  max-width: 620px;
+  max-width: 660px;
   margin: 0 auto;
 `;
 
@@ -37,20 +39,36 @@ const Title = styled(AvatarAvatar)`
   margin-top: 20px;
 `;
 
+const ReposWrapper = styled.div`
+  margin-top: 20px;
+`;
+
 type UserCardProps = {
   user: UserModel;
 };
 
-const UserCard: FC<UserCardProps> = ({ user }) => (
-  <Wrapper>
-    <Avatar src={user.avatar_url} />
+const UserCard: FC<UserCardProps> = ({ user }) => {
+  const { repos, getUserRepos, isLoading } = useUserRepos();
 
-    <Title>{user.name}</Title>
-    <Paragraph color="secondary">{user.login}</Paragraph>
+  useEffect(() => {
+    getUserRepos(user.login);
+  }, []);
 
-    <UserCardInfo label="E-mail" text={user.email} />
-    <UserCardInfo label="Bio" text={user.bio} />
-  </Wrapper>
-);
+  return (
+    <Wrapper>
+      <Avatar src={user.avatar_url} />
+
+      <Title>{user.name}</Title>
+      <Paragraph color="secondary">{user.login}</Paragraph>
+
+      <UserCardInfo label="E-mail" text={user.email} />
+      <UserCardInfo label="Bio" text={user.bio} />
+
+      <ReposWrapper>
+        <UserCardRepos repos={repos} isLoading={isLoading} />
+      </ReposWrapper>
+    </Wrapper>
+  );
+};
 
 export default UserCard;

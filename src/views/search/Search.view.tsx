@@ -20,7 +20,6 @@ const SearchView: FC = () => {
   const { replace } = useHistory();
 
   useEffect(() => {
-    console.log(user);
     if (user) replace(`/search?term=${user.login}`);
   }, [user]);
 
