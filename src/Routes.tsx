@@ -9,11 +9,11 @@ import { darkTheme, lightTheme } from './themes';
 import useTheme from '@/io/redux/theme/useTheme.hook';
 
 // Lazy Loading Views
-const IndexView = toLoadable(() => import('@/views/index/Index.view'));
-
 const Redirect404View = toLoadable(
   () => import('@/views/404/Redirect404.view')
 );
+
+const IndexView = toLoadable(() => import('@/views/index/Index.view'));
 
 const Routes: FC = () => {
   const { theme } = useTheme();

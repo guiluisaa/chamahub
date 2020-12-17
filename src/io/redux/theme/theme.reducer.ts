@@ -1,7 +1,7 @@
 import { SET_THEME, ThemeState, ThemeTypes } from './theme.types';
 
 const initialState: ThemeState = {
-  theme: 'dark',
+  theme: 'light',
 };
 
 const themeReducer = (state = initialState, action: ThemeTypes) => {
