@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   * {
-    transition: 0.4s;
+    transition: 0.2s;
     box-sizing: border-box;
   }
 

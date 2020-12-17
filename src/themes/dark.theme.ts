@@ -16,7 +16,7 @@ const darkTheme: DefaultTheme = {
     weight: fontWeight,
     color: {
       primary: color.white,
-      secondary: color.deepGray,
+      secondary: color.gray,
     },
   },
 
