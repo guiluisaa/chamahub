@@ -7,6 +7,7 @@ const api = axios.create({
 
   headers: {
     'content-type': 'application/json; charset=utf-8',
+    Accept: 'application/vnd.github.v3+json',
   },
 });
 
