@@ -2,21 +2,15 @@ import React, { FC } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { toLoadable } from '@/utils';
 import Layout from './components/layout/Layout.component';
 import GlobalStyle from './shared-styles/GlobalStyle';
 import { darkTheme, lightTheme } from './themes';
 import useTheme from '@/io/redux/theme/useTheme.hook';
 
 // Views
+import Redirect404View from './views/404/Redirect404.view';
+import IndexView from './views/index/Index.view';
 import SearchView from './views/search/Search.view';
-
-// Lazy Loading Views
-const Redirect404View = toLoadable(
-  () => import('@/views/404/Redirect404.view')
-);
-
-const IndexView = toLoadable(() => import('@/views/index/Index.view'));
 
 const Routes: FC = () => {
   const { theme } = useTheme();
