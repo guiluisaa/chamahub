@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<IndexView /> should match snapchat 1`] = `
-<Fragment>
-  <styled.h2>
-    Index
-  </styled.h2>
-</Fragment>
+<Component
+  to="/search"
+/>
 `;

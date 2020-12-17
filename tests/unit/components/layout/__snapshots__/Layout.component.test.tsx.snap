@@ -2,7 +2,9 @@
 
 exports[`<Layout /> should match snapchat 1`] = `
 <styled.div>
-  <Header />
+  <styled.div>
+    <Header />
+  </styled.div>
   <styled.div />
 </styled.div>
 `;

@@ -80,6 +80,11 @@ exports[`<Routes /> should match snapchat 1`] = `
         />
         <Route
           component={[Function]}
+          exact={true}
+          path="/search"
+        />
+        <Route
+          component={[Function]}
         />
       </Switch>
     </Layout>
