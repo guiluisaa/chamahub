@@ -30,7 +30,7 @@ const Button = styled(SharedButton)`
   margin-top: 20px;
 `;
 
-const Link = styled(RouterLink)`
+const Link = styled.a`
   font-family: ${({ theme }) => theme.font.family};
   color: ${({ theme }) => theme.font.color.secondary};
   font-size: 14px;
@@ -86,7 +86,9 @@ const SearchForm: FC<SearchFormProps> = ({ onSubmit, isLoading }) => {
         Search
       </Button>
 
-      <Link to="/history">Terms history</Link>
+      <RouterLink to="/history">
+        <Link>Terms history</Link>
+      </RouterLink>
     </Wrapper>
   );
 };
