@@ -17,7 +17,7 @@ const useUser = () => {
     try {
       const { data: user } = await api.get<UserModel>(`users/${username}`);
 
-      addRecord(username);
+      addRecord(user.login);
       setUser(user);
     } catch (error) {
       setError(error.response.data.message);
