@@ -6,6 +6,7 @@ import { lightThemeButton } from './tokens/button.token';
 import color from './tokens/color.token';
 import { fontWeight } from './tokens/font.token';
 import { lightThemeInput } from './tokens/input.token';
+import { lightThemeAlert } from './tokens/alert.token';
 
 const lightTheme: DefaultTheme = {
   theme: 'light',
@@ -41,6 +42,7 @@ const lightTheme: DefaultTheme = {
       backgroundColorPrimary: color.white,
       backgroundColorSecondary: color.lightWhite,
     },
+    alert: lightThemeAlert,
   },
 };
 

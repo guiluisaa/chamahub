@@ -6,7 +6,7 @@ import useHistory from '../redux/history/useHistory.hook';
 
 const useUser = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<UserModel>();
+  const [user, setUser] = useState<UserModel | null>(null);
   const [error, setError] = useState('');
   const { addRecord } = useHistory();
 
@@ -21,6 +21,7 @@ const useUser = () => {
       setUser(user);
     } catch (error) {
       setError(error.response.data.message);
+      setUser(null);
     } finally {
       setIsLoading(false);
     }

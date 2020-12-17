@@ -28,6 +28,8 @@ exports[`<Routes /> should match snapchat 1`] = `
         "deepBlack": "#000",
         "deepGray": "#414141",
         "gray": "#969696",
+        "lightBlue": "rgba(64, 106, 224, 0.2)",
+        "lightDanger": "rgba(255, 91, 104, 0.2)",
         "lightGray": "#dde0e4",
         "lightWhite": "#f9f9f9",
         "success": "#2AD178",
@@ -35,6 +37,16 @@ exports[`<Routes /> should match snapchat 1`] = `
         "white": "#FFF",
       },
       "components": Object {
+        "alert": Object {
+          "error": Object {
+            "backgroundColor": "rgba(255, 91, 104, 0.2)",
+            "color": "#FF5B68",
+          },
+          "primary": Object {
+            "backgroundColor": "rgba(64, 106, 224, 0.2)",
+            "color": "#406ae0",
+          },
+        },
         "button": Object {
           "activeBackgroundColor": "#406ae0",
           "activeBorderColor": "#406ae0",

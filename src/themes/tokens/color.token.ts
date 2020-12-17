@@ -11,10 +11,12 @@ const color = {
   deepGray: '#414141',
 
   blue: '#406ae0',
+  lightBlue: 'rgba(64, 106, 224, 0.2)',
 
   success: '#2AD178',
   warning: '#FABD59',
   danger: '#FF5B68',
+  lightDanger: 'rgba(255, 91, 104, 0.2)',
 };
 
 export type Color = typeof color;

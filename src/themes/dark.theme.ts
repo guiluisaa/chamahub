@@ -6,6 +6,7 @@ import { darkThemeButton } from './tokens/button.token';
 import color from './tokens/color.token';
 import { fontWeight } from './tokens/font.token';
 import { darkThemeInput } from './tokens/input.token';
+import { darkThemeAlert } from './tokens/alert.token';
 
 const darkTheme: DefaultTheme = {
   theme: 'dark',
@@ -41,6 +42,7 @@ const darkTheme: DefaultTheme = {
       backgroundColorPrimary: color.deepBlack,
       backgroundColorSecondary: color.black,
     },
+    alert: darkThemeAlert,
   },
 };
 
