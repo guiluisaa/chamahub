@@ -8,6 +8,9 @@ import GlobalStyle from './shared-styles/GlobalStyle';
 import { darkTheme, lightTheme } from './themes';
 import useTheme from '@/io/redux/theme/useTheme.hook';
 
+// Views
+import SearchView from './views/search/Search.view';
+
 // Lazy Loading Views
 const Redirect404View = toLoadable(
   () => import('@/views/404/Redirect404.view')
@@ -25,6 +28,7 @@ const Routes: FC = () => {
         <Layout>
           <Switch>
             <Route exact path="/" component={IndexView} />
+            <Route exact path="/search" component={SearchView} />
 
             <Route component={Redirect404View} />
           </Switch>

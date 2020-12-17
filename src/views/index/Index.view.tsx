@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { Title } from '@/components/typograph/Typograph.component';
+import { Redirect } from 'react-router-dom';
 
-const IndexView: FC = () => <Title>Index</Title>;
+const IndexView: FC = () => <Redirect to="/search" />;
 
 export default IndexView;
