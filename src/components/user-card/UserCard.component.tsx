@@ -52,7 +52,7 @@ const UserCard: FC<UserCardProps> = ({ user }) => {
 
   useEffect(() => {
     getUserRepos(user.login);
-  }, []);
+  }, [user]);
 
   return (
     <Wrapper>
