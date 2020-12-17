@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchView /> should match snapchat 1`] = `
+<Styled(styled.div)>
+  <SearchForm
+    isLoading={false}
+    onSubmit={[Function]}
+  />
+  <br />
+  <UserCard
+    user={Object {}}
+  />
+</Styled(styled.div)>
+`;

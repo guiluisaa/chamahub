@@ -46,6 +46,10 @@ exports[`<Routes /> should match snapchat 1`] = `
           "hoverBorderColor": "#FFF",
           "hoverColor": "#406ae0",
         },
+        "card": Object {
+          "backgroundColorPrimary": "#FFF",
+          "backgroundColorSecondary": "#f9f9f9",
+        },
         "input": Object {
           "backgroundColor": "#FFF",
           "borderColor": "#dde0e4",
