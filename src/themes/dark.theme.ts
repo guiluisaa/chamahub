@@ -37,6 +37,10 @@ const darkTheme: DefaultTheme = {
   components: {
     button: darkThemeButton,
     input: darkThemeInput,
+    card: {
+      backgroundColorPrimary: color.deepBlack,
+      backgroundColorSecondary: color.black,
+    },
   },
 };
 

@@ -37,6 +37,10 @@ const lightTheme: DefaultTheme = {
   components: {
     button: lightThemeButton,
     input: lightThemeInput,
+    card: {
+      backgroundColorPrimary: color.white,
+      backgroundColorSecondary: color.lightGray,
+    },
   },
 };
 
