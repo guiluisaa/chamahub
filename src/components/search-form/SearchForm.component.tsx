@@ -1,10 +1,18 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 import SharedButton from '../button/Button.component';
 
 import Input from '../input/Input.component';
 import { Title as SharedTitle } from '@/components/typograph/Typograph.component';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { parse } from 'query-string';
 
 const Wrapper = styled.form`
   display: block;
@@ -45,6 +53,15 @@ type SearchFormProps = {
 
 const SearchForm: FC<SearchFormProps> = ({ onSubmit, isLoading }) => {
   const [term, setTerm] = useState('');
+  const { search } = useLocation();
+
+  const { term: queryTerm } = useMemo(() => parse(search) as { term: string }, [
+    search,
+  ]);
+
+  useEffect(() => {
+    if (queryTerm) setTerm(queryTerm);
+  }, []);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) =>
     setTerm(event.target.value);
@@ -52,6 +69,8 @@ const SearchForm: FC<SearchFormProps> = ({ onSubmit, isLoading }) => {
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(term);
+
+    console.log(location);
   };
 
   return (
