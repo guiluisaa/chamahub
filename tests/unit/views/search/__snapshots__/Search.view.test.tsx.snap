@@ -6,7 +6,6 @@ exports[`<SearchView /> should match snapchat 1`] = `
     isLoading={false}
     onSubmit={[Function]}
   />
-  <br />
   <UserCard
     user={Object {}}
   />
