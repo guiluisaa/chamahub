@@ -8,6 +8,7 @@ import { ThemeType } from '@/themes/tokens/theme.token';
 import { Background } from '@/themes/tokens/background.token';
 import { ButtonToken } from '@/themes/tokens/button.token';
 import { InputToken } from '@/themes/tokens/input.token';
+import { CardToken } from '@/themes/tokens/card.token';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -22,6 +23,7 @@ declare module 'styled-components' {
     components: {
       button: ButtonToken;
       input: InputToken;
+      card: CardToken;
     };
   }
 }

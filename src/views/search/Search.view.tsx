@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import SearchForm from '@/components/search-form/SearchForm.component';
 import SharedContainer from '@/components/layout/Container.component';
 import Flexbox from '@/shared-styles/Flexbox.css';
 import useUser from '@/io/user/useUser.hook';
-import { Paragraph } from '@/components/typograph/Typograph.component';
-import { useHistory } from 'react-router-dom';
+import UserCard from '@/components/user-card/UserCard.component';
 
 const Container = styled(SharedContainer)`
   width: 100%;
@@ -20,6 +20,7 @@ const SearchView: FC = () => {
   const { replace } = useHistory();
 
   useEffect(() => {
+    console.log(user);
     if (user) replace(`/search?term=${user.login}`);
   }, [user]);
 
@@ -29,13 +30,7 @@ const SearchView: FC = () => {
     <Container>
       <SearchForm onSubmit={onSearch} isLoading={isLoading} />
       <br />
-      {user && (
-        <>
-          <Paragraph>{user.name}</Paragraph>
-          <Paragraph>{user.login}</Paragraph>
-          <Paragraph>{user.bio}</Paragraph>
-        </>
-      )}
+      {user && <UserCard user={user} />}
     </Container>
   );
 };

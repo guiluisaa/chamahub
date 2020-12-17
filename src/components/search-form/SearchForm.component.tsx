@@ -18,7 +18,7 @@ const Wrapper = styled.form`
   display: block;
   width: 100%;
   max-width: 335px;
-  margin: -70px auto 40px;
+  margin: 40px auto;
 `;
 
 const Title = styled(SharedTitle)`
