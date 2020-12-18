@@ -101,6 +101,11 @@ exports[`<Routes /> should match snapchat 1`] = `
         />
         <Route
           component={[Function]}
+          exact={true}
+          path="/history"
+        />
+        <Route
+          component={[Function]}
         />
       </Switch>
     </Layout>
