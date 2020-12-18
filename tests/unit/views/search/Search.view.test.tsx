@@ -10,7 +10,7 @@ jest.mock('@/io/user/useUser.hook', () => () => ({
 }));
 
 jest.mock('react-router-dom', () => ({
-  useHistory: () => ({ replace: jest.fn() }),
+  useHistory: () => ({ replace: jest.fn(), location: { search: '' } }),
 }));
 
 describe('<SearchView />', () => {

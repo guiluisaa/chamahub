@@ -1,6 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { parse } from 'query-string';
 
 import SearchForm from '@/components/search-form/SearchForm.component';
 import SharedContainer from '@/components/layout/Container.component';
@@ -26,7 +27,18 @@ const Alert = styled(SharedAlert)`
 
 const SearchView: FC = () => {
   const { user, getUser, isLoading, error } = useUser();
-  const { replace } = useHistory();
+  const {
+    replace,
+    location: { search },
+  } = useHistory();
+
+  const { term: queryTerm } = useMemo(() => parse(search) as { term: string }, [
+    search,
+  ]);
+
+  useEffect(() => {
+    if (queryTerm) onSearch(queryTerm);
+  }, []);
 
   useEffect(() => {
     if (user) replace(`/search?term=${user.login}`);
