@@ -48,11 +48,17 @@ type UserCardProps = {
 };
 
 const UserCard: FC<UserCardProps> = ({ user }) => {
-  const { repos, getUserRepos, isLoading } = useUserRepos();
+  const { repos, getUserRepos, isLoading, signal } = useUserRepos();
 
   useEffect(() => {
     getUserRepos(user.login);
   }, [user]);
+
+  useEffect(() => {
+    return () => {
+      signal.cancel('Api is being canceled.');
+    };
+  }, []);
 
   return (
     <Wrapper>

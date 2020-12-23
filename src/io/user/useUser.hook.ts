@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import api from '@/io/api';
 import { UserModel } from '@/models/User.model';
 import useHistory from '../redux/history/useHistory.hook';
+import axios from 'axios';
 
 const useUser = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,12 +11,16 @@ const useUser = () => {
   const [error, setError] = useState('');
   const { addRecord } = useHistory();
 
+  const signal = axios.CancelToken.source();
+
   const getUser = useCallback(async (username: string) => {
     setError('');
     setIsLoading(true);
 
     try {
-      const { data: user } = await api.get<UserModel>(`users/${username}`);
+      const { data: user } = await api.get<UserModel>(`users/${username}`, {
+        cancelToken: signal.token,
+      });
 
       addRecord(user.login);
       setUser(user);
@@ -31,6 +36,7 @@ const useUser = () => {
     user,
     isLoading,
     error,
+    signal,
 
     getUser,
   };

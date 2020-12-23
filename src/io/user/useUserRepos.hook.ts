@@ -2,11 +2,14 @@ import { useCallback, useState } from 'react';
 
 import api from '@/io/api';
 import { RepoModel } from '@/models/Repo.model';
+import axios from 'axios';
 
 const useUserRepos = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [repos, setRepos] = useState<RepoModel[]>([]);
   const [error, setError] = useState('');
+
+  const signal = axios.CancelToken.source();
 
   const getUserRepos = useCallback(async (username: string) => {
     setError('');
@@ -18,6 +21,7 @@ const useUserRepos = () => {
           params: {
             per_page: 4,
           },
+          cancelToken: signal.token,
         }
       );
 
@@ -33,6 +37,7 @@ const useUserRepos = () => {
     repos,
     isLoading,
     error,
+    signal,
 
     getUserRepos,
   };

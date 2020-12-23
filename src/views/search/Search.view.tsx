@@ -26,7 +26,7 @@ const Alert = styled(SharedAlert)`
 `;
 
 const SearchView: FC = () => {
-  const { user, getUser, isLoading, error } = useUser();
+  const { user, getUser, isLoading, error, signal } = useUser();
   const {
     replace,
     location: { search },
@@ -38,6 +38,10 @@ const SearchView: FC = () => {
 
   useEffect(() => {
     if (queryTerm) onSearch(queryTerm);
+
+    return () => {
+      signal.cancel('Api is being canceled.');
+    };
   }, []);
 
   useEffect(() => {
