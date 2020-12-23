@@ -1,6 +1,6 @@
 {
   "name": "chamahub",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A front-end UI for the github user api",
   "author": "Guilherme Araujo",
   "license": "ISC",
