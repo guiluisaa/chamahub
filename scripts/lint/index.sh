@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "🚨  Linting the code! ..."
-eslint src
+eslint src --max-warnings=0
