@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "chmod +x ./scripts/**/*.sh",
     "build:local": "scripty",
-    "build:production": "scripty",
+    "build": "scripty",
     "start:local": "scripty",
     "test:unit": "scripty",
     "test:unit:coverage": "scripty",

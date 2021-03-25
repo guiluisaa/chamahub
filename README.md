@@ -2,7 +2,7 @@
 
 A front-end UI for the github user api
 
-> Visit the live app at [https://chamahub.vercel.app/](https://chamahub.vercel.app/)
+> Visit the live app at [https://chamahub.ergil.dev/](https://chamahub.ergil.dev/)
 
 ## Prerequisites
 
@@ -30,8 +30,8 @@ You will need the following things properly installed on your computer:
 # local
 yarn build:local
 
-# production
-yarn build:production
+# preview and production
+yarn build
 ```
 
 > The build result will be in `./dist` directory
