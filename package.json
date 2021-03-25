@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "16.14.0",
+    "@sentry/react": "^6.2.3",
+    "@sentry/tracing": "^6.2.3",
     "axios": "^0.21.0",
     "copy-webpack-plugin": "^6.1.1",
     "core-js": "^3.8.1",
