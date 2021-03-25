@@ -6,8 +6,8 @@ const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-module.exports = () => {
-  const environment = process.env.ENVIRONMENT;
+module.exports = (env) => {
+  const environment = env && env.ENVIRONMENT ?  env.ENVIRONMENT : process.env.ENVIRONMENT;
 
   // Define the environment file path
   const envPath = path.join(__dirname, `./config/.env.${environment}`);
