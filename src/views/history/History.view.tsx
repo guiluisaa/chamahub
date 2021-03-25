@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import SharedContainer from '@/components/layout/Container.component';
 import { Title as SharedTitle } from '@/components/typograph/Typograph.component';
-import useHistory from '@/io/redux/history/useHistory.hook';
+import useHistory from '@/io/redux/history/useHistoryStore.hook';
 import RecordCard from '@/components/record-card/RecordCard.component';
 
 const Container = styled(SharedContainer)`

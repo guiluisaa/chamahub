@@ -6,7 +6,7 @@ import { parse } from 'query-string';
 import SearchForm from '@/components/search-form/SearchForm.component';
 import SharedContainer from '@/components/layout/Container.component';
 import Flexbox from '@/shared-styles/Flexbox.css';
-import useUser from '@/io/user/useUser.hook';
+import useUser from '@/hooks/useUser.hook';
 import UserCard from '@/components/user-card/UserCard.component';
 import SharedAlert from '@/components/alert/Alert.component';
 

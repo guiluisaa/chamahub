@@ -1,21 +1,21 @@
 import { useCallback, useState } from 'react';
 
-import api from '@/io/api';
 import { UserModel } from '@/models/User.model';
-import useHistory from '../redux/history/useHistory.hook';
+import useHistoryStore from '@/io/redux/history/useHistoryStore.hook';
+import getUserService from '@/io/services/user/getUser.service';
 
 const useUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState<UserModel | null>(null);
   const [error, setError] = useState('');
-  const { addRecord } = useHistory();
+  const { addRecord } = useHistoryStore();
 
   const getUser = useCallback(async (username: string) => {
     setError('');
     setIsLoading(true);
 
     try {
-      const { data: user } = await api.get<UserModel>(`users/${username}`);
+      const user = await getUserService(username);
 
       addRecord(user.login);
       setUser(user);

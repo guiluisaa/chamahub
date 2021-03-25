@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
-import api from '@/io/api';
 import { RepoModel } from '@/models/Repo.model';
+import getUserReposService from '../io/services/user/getUserRepos.service';
 
 const useUserRepos = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,15 +12,7 @@ const useUserRepos = () => {
     setError('');
     setIsLoading(true);
     try {
-      const { data: repos } = await api.get<RepoModel[]>(
-        `users/${username}/repos`,
-        {
-          params: {
-            per_page: 4,
-          },
-        }
-      );
-
+      const repos = await getUserReposService(username);
       setRepos(repos);
     } catch (error) {
       setError(error.response.data.message);

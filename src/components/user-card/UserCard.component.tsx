@@ -7,7 +7,7 @@ import {
   Title as AvatarAvatar,
 } from '../typograph/Typograph.component';
 import UserCardInfo from './UserCardInfo.component';
-import useUserRepos from '@/io/user/useUserRepos.hook';
+import useUserRepos from '@/hooks/useUserRepos.hook';
 import UserCardRepos from './UserCardRepos.component';
 
 const Wrapper = styled.div`
