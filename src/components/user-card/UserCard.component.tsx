@@ -7,8 +7,9 @@ import {
   Title as AvatarAvatar,
 } from '../typograph/Typograph.component';
 import UserCardInfo from './UserCardInfo.component';
-import useUserRepos from '@/io/user/useUserRepos.hook';
+import useUserRepos from '@/hooks/useUserRepos.hook';
 import UserCardRepos from './UserCardRepos.component';
+import useAbortSignal from '@/hooks/useAbortSignal.hook';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) =>
@@ -49,10 +50,17 @@ type UserCardProps = {
 
 const UserCard: FC<UserCardProps> = ({ user }) => {
   const { repos, getUserRepos, isLoading } = useUserRepos();
+  const { token: abortToken, cancel } = useAbortSignal();
 
   useEffect(() => {
-    getUserRepos(user.login);
+    getUserRepos(user.login, abortToken);
   }, [user]);
+
+  useEffect(() => {
+    return () => {
+      cancel('get repos api is being canceled.');
+    };
+  }, []);
 
   return (
     <Wrapper>
