@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { CancelToken } from 'axios';
 
 import { UserModel } from '@/models/User.model';
 import useHistoryStore from '@/io/redux/history/useHistoryStore.hook';
@@ -10,22 +11,25 @@ const useUser = () => {
   const [error, setError] = useState('');
   const { addRecord } = useHistoryStore();
 
-  const getUser = useCallback(async (username: string) => {
-    setError('');
-    setIsLoading(true);
+  const getUser = useCallback(
+    async (username: string, abortSignal?: CancelToken) => {
+      setError('');
+      setIsLoading(true);
 
-    try {
-      const user = await getUserService(username);
+      try {
+        const user = await getUserService(username, abortSignal);
 
-      addRecord(user.login);
-      setUser(user);
-    } catch (error) {
-      setError(error.response.data.message);
-      setUser(null);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+        addRecord(user.login);
+        setUser(user);
+      } catch (error) {
+        setError(error.response.data.message);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
 
   return {
     user,

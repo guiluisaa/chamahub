@@ -9,6 +9,7 @@ import Flexbox from '@/shared-styles/Flexbox.css';
 import useUser from '@/hooks/useUser.hook';
 import UserCard from '@/components/user-card/UserCard.component';
 import SharedAlert from '@/components/alert/Alert.component';
+import useAbortSignal from '@/hooks/useAbortSignal.hook';
 
 const Container = styled(SharedContainer)`
   width: 100%;
@@ -31,6 +32,7 @@ const SearchView: FC = () => {
     replace,
     location: { search },
   } = useHistory();
+  const { token: abortToken, cancel } = useAbortSignal();
 
   const { term: queryTerm } = useMemo(() => parse(search) as { term: string }, [
     search,
@@ -38,6 +40,10 @@ const SearchView: FC = () => {
 
   useEffect(() => {
     if (queryTerm) onSearch(queryTerm);
+
+    return () => {
+      cancel('get user api is being canceled.');
+    };
   }, []);
 
   useEffect(() => {
@@ -45,7 +51,7 @@ const SearchView: FC = () => {
     if (error) replace(`/search`);
   }, [user, error]);
 
-  const onSearch = (term: string) => getUser(term);
+  const onSearch = (term: string) => getUser(term, abortToken);
 
   return (
     <Container>
