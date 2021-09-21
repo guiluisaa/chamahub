@@ -7,15 +7,13 @@ import * as S from './styles';
 import SearchForm from '@/components/SearchForm';
 import useUser from '@/hooks/useUser.hook';
 import UserCard from '@/components/UserCard';
-import useAbortSignal from '@/hooks/useAbortSignal.hook';
 
 const SearchView: FC = () => {
-  const { user, getUser, isLoading, error } = useUser();
+  const { user, getUser, loading, error } = useUser();
   const {
     replace,
     location: { search },
   } = useHistory();
-  const { token: abortToken, cancel } = useAbortSignal();
 
   const { term: queryTerm } = useMemo(() => parse(search) as { term: string }, [
     search,
@@ -23,10 +21,6 @@ const SearchView: FC = () => {
 
   useEffect(() => {
     if (queryTerm) onSearch(queryTerm);
-
-    return () => {
-      cancel('get user api is being canceled.');
-    };
   }, []);
 
   useEffect(() => {
@@ -34,13 +28,13 @@ const SearchView: FC = () => {
     if (error) replace(`/search`);
   }, [user, error]);
 
-  const onSearch = (term: string) => getUser(term, abortToken);
+  const onSearch = (term: string) => getUser(term);
 
   return (
     <S.Wrapper>
-      <SearchForm onSubmit={onSearch} isLoading={isLoading} />
+      <SearchForm onSubmit={onSearch} isLoading={loading} />
 
-      {error && <S.Alert type="error">{error}</S.Alert>}
+      {error && <S.Alert type="error">{error.message}</S.Alert>}
 
       {user && <UserCard user={user} />}
     </S.Wrapper>

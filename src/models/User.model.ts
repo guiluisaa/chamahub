@@ -1,8 +1,8 @@
 export type UserModel = {
   id: number;
-  avatar_url: string;
+  avatarUrl: string;
   name: string;
   login: string;
   email: string;
-  bio: string | null;
+  bio: string;
 };
