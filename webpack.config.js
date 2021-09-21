@@ -10,7 +10,7 @@ module.exports = (env) => {
   const environment = env && env.ENVIRONMENT ?  env.ENVIRONMENT : process.env.ENVIRONMENT;
 
   // Define the environment file path
-  const envPath = path.join(__dirname, `./config/.env.${environment}`);
+  const envPath = path.join(__dirname, `./.env.${environment}`);
 
   // Start DotEnv
   const envVariables = dotenv.config({ path: envPath }).parsed || process.env;
