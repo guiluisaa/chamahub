@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Paragraph } from '../Typograph';
+import { Paragraph } from '../typograph/Typograph.component';
 
 export const Wrapper = styled.div`
   width: 100%;
