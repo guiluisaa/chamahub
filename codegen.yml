@@ -1,0 +1,19 @@
+overwrite: true
+schema:
+  - ${GITHUB_GRAPHQL_API_URL}:
+      headers:
+        Authorization: Bearer ${GITHUB_GRAPHQL_API_TOKEN}
+
+documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
+hooks:
+  afterOneFileWrite:
+    - yarn lint:fix

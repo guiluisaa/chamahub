@@ -1,26 +1,10 @@
 import { useCallback, useEffect } from 'react';
-import { gql, useLazyQuery } from '@apollo/client';
 
-import { UserModel } from '@/models/User.model';
+import { useGetUserLazyQuery } from '@graphql';
 import useHistoryStore from '@/io/redux/history/useHistoryStore.hook';
 
-const GET_USER = gql`
-  query User($login: String!) {
-    user(login: $login) {
-      id
-      avatarUrl
-      name
-      login
-      email
-      bio
-    }
-  }
-`;
-
 const useUser = () => {
-  const [getUserQuery, { loading, error, data }] = useLazyQuery<{
-    user: UserModel;
-  }>(GET_USER);
+  const [getUserQuery, { loading, error, data }] = useGetUserLazyQuery();
 
   const { addRecord } = useHistoryStore();
 
@@ -29,12 +13,8 @@ const useUser = () => {
   }, [data?.user]);
 
   const getUser = useCallback(
-    async (term: string) => {
-      const { data: resData } = await getUserQuery({
-        variables: { login: term },
-      });
-
-      console.log(resData);
+    (term: string) => {
+      getUserQuery({ variables: { login: term } });
     },
     [getUserQuery]
   );

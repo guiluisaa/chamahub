@@ -1,0 +1,10 @@
+query getUser($login: String!) {
+  user(login: $login) {
+    id
+    avatarUrl
+    name
+    login
+    email
+    bio
+  }
+}

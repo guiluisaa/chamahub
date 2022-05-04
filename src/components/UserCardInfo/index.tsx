@@ -6,7 +6,7 @@ import { Paragraph } from '../Typograph';
 
 type UserCardInfoProps = {
   label: string;
-  text: string;
+  text?: string | null;
 };
 
 const UserCardInfo: FC<UserCardInfoProps> = ({ label, text }) => {

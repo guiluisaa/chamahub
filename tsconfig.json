@@ -23,6 +23,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
+      "@graphql": ["./src/generated/graphql.tsx"],
       "@": ["./src/index.tsx"],
       "@/*": ["./src/*"]
     }
