@@ -28,9 +28,16 @@ const useUser = () => {
     if (data?.user?.login) addRecord(data?.user.login);
   }, [data?.user]);
 
-  const getUser = useCallback((term: string) => {
-    getUserQuery({ variables: { login: term } });
-  }, []);
+  const getUser = useCallback(
+    async (term: string) => {
+      const { data: resData } = await getUserQuery({
+        variables: { login: term },
+      });
+
+      console.log(resData);
+    },
+    [getUserQuery]
+  );
 
   return {
     user: data?.user,
