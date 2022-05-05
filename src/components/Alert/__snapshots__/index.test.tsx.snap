@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Alert /> should match snapchat 1`] = `
+<p
+  className="sc-gsnTZi sc-dkzDqf rQpWV jCUTOj"
+/>
+`;
