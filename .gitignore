@@ -22,3 +22,5 @@ lerna-debug.log
 package-lock.json
 yarn-error.log
 .now
+.env
+.env.*
