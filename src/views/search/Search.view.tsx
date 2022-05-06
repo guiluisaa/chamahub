@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { parse } from 'query-string';
 
-import SearchForm from '@/components/search-form/SearchForm.component';
-import SharedContainer from '@/components/layout/Container.component';
+import SearchForm from '@/components/SearchForm';
+import SharedContainer from '@/components/Container';
 import Flexbox from '@/shared-styles/Flexbox.css';
 import useUser from '@/hooks/useUser.hook';
-import UserCard from '@/components/user-card/UserCard.component';
-import SharedAlert from '@/components/alert/Alert.component';
+import UserCard from '@/components/UserCard';
+import SharedAlert from '@/components/Alert';
 import useAbortSignal from '@/hooks/useAbortSignal.hook';
 
 const Container = styled(SharedContainer)`

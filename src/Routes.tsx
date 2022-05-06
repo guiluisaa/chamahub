@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import Layout from './components/layout/Layout.component';
+import Layout from './components/Layout';
 import GlobalStyle from './shared-styles/GlobalStyle';
 import { darkTheme, lightTheme } from './themes';
 import useTheme from '@/io/redux/theme/useTheme.hook';
