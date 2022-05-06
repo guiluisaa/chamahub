@@ -7,7 +7,6 @@ import { Paragraph } from '@/components/Typograph';
 import UserCardInfo from '../UserCardInfo';
 import useUserRepos from '@/hooks/useUserRepos.hook';
 import UserCardRepos from '../UserCardRepos';
-import useAbortSignal from '@/hooks/useAbortSignal.hook';
 
 type UserCardProps = {
   user: UserModel;
@@ -15,17 +14,10 @@ type UserCardProps = {
 
 const UserCard: FC<UserCardProps> = ({ user }) => {
   const { repos, getUserRepos, isLoading } = useUserRepos();
-  const { token: abortToken, cancel } = useAbortSignal();
 
   useEffect(() => {
-    getUserRepos(user.login, abortToken);
+    getUserRepos(user.login);
   }, [user]);
-
-  useEffect(() => {
-    return () => {
-      cancel('get repos api is being canceled.');
-    };
-  }, []);
 
   return (
     <S.Wrapper>
@@ -37,9 +29,11 @@ const UserCard: FC<UserCardProps> = ({ user }) => {
       <UserCardInfo label="E-mail" text={user.email} />
       <UserCardInfo label="Bio" text={user.bio} />
 
-      <S.ReposWrapper>
-        <UserCardRepos repos={repos} isLoading={isLoading} />
-      </S.ReposWrapper>
+      {repos && (
+        <S.ReposWrapper>
+          <UserCardRepos repos={repos} isLoading={isLoading} />
+        </S.ReposWrapper>
+      )}
     </S.Wrapper>
   );
 };

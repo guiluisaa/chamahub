@@ -1,10 +1,13 @@
 import { useCallback, useEffect } from 'react';
 
-import { useGetUserLazyQuery } from '@graphql';
+import { useGetUserWithReposLazyQuery } from '@graphql';
 import useHistoryStore from '@/io/redux/history/useHistoryStore.hook';
 
 const useUser = () => {
-  const [getUserQuery, { loading, error, data }] = useGetUserLazyQuery();
+  const [
+    getUserQuery,
+    { loading, error, data },
+  ] = useGetUserWithReposLazyQuery();
 
   const { addRecord } = useHistoryStore();
 

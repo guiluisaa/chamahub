@@ -1,6 +1,6 @@
 export type RepoModel = {
-  id: number;
+  id: string;
   name: string;
-  description: string;
-  html_url: string;
+  description?: string | null;
+  url: string;
 };

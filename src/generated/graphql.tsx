@@ -8533,6 +8533,8 @@ export type Migration = {
   /** The reason the migration failed. */
   failureReason?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+  /** The URL for the migration log (expires 1 day after migration completes). */
+  migrationLogUrl?: Maybe<Scalars['URI']>;
   /** The Octoshift migration source. */
   migrationSource: MigrationSource;
   /** The target repository name. */
@@ -18201,6 +18203,8 @@ export type RepositoryMigration = Migration & Node & {
   /** The reason the migration failed. */
   failureReason?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+  /** The URL for the migration log (expires 1 day after migration completes). */
+  migrationLogUrl?: Maybe<Scalars['URI']>;
   /** The Octoshift migration source. */
   migrationSource: MigrationSource;
   /** The target repository name. */
@@ -23683,16 +23687,50 @@ export type WorkflowRunPendingDeploymentRequestsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
-export type GetUserQueryVariables = Exact<{
+export type RepoInfoFragment = { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null };
+
+export type UserReposFragment = { __typename?: 'User', repositories: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null } };
+
+export type GetUserWithReposQueryVariables = Exact<{
   login: Scalars['String'];
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, avatarUrl: any, name?: string | null, login: string, email: string, bio?: string | null } | null };
+export type GetUserWithReposQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, avatarUrl: any, name?: string | null, login: string, email: string, bio?: string | null, repositories: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null } } | null };
+
+export type GetUserReposQueryVariables = Exact<{
+  login: Scalars['String'];
+}>;
 
 
-export const GetUserDocument = gql`
-    query getUser($login: String!) {
+export type GetUserReposQuery = { __typename?: 'Query', user?: { __typename?: 'User', repositories: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null } } | null };
+
+export const RepoInfoFragmentDoc = gql`
+    fragment RepoInfo on RepositoryConnection {
+  edges {
+    node {
+      id
+      name
+      description
+      url
+    }
+  }
+}
+    `;
+export const UserReposFragmentDoc = gql`
+    fragment UserRepos on User {
+  repositories(
+    first: 4
+    orderBy: {field: UPDATED_AT, direction: DESC}
+    affiliations: OWNER
+    privacy: PUBLIC
+  ) {
+    ...RepoInfo
+  }
+}
+    ${RepoInfoFragmentDoc}`;
+export const GetUserWithReposDocument = gql`
+    query getUserWithRepos($login: String!) {
   user(login: $login) {
     id
     avatarUrl
@@ -23700,34 +23738,70 @@ export const GetUserDocument = gql`
     login
     email
     bio
+    ...UserRepos
   }
 }
-    `;
+    ${UserReposFragmentDoc}`;
 
 /**
- * __useGetUserQuery__
+ * __useGetUserWithReposQuery__
  *
- * To run a query within a React component, call `useGetUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetUserWithReposQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserWithReposQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetUserQuery({
+ * const { data, loading, error } = useGetUserWithReposQuery({
  *   variables: {
  *      login: // value for 'login'
  *   },
  * });
  */
-export function useGetUserQuery(baseOptions: Apollo.QueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+export function useGetUserWithReposQuery(baseOptions: Apollo.QueryHookOptions<GetUserWithReposQuery, GetUserWithReposQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+        return Apollo.useQuery<GetUserWithReposQuery, GetUserWithReposQueryVariables>(GetUserWithReposDocument, options);
       }
-export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+export function useGetUserWithReposLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserWithReposQuery, GetUserWithReposQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+          return Apollo.useLazyQuery<GetUserWithReposQuery, GetUserWithReposQueryVariables>(GetUserWithReposDocument, options);
         }
-export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
-export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
-export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
+export type GetUserWithReposQueryHookResult = ReturnType<typeof useGetUserWithReposQuery>;
+export type GetUserWithReposLazyQueryHookResult = ReturnType<typeof useGetUserWithReposLazyQuery>;
+export type GetUserWithReposQueryResult = Apollo.QueryResult<GetUserWithReposQuery, GetUserWithReposQueryVariables>;
+export const GetUserReposDocument = gql`
+    query getUserRepos($login: String!) {
+  user(login: $login) {
+    ...UserRepos
+  }
+}
+    ${UserReposFragmentDoc}`;
+
+/**
+ * __useGetUserReposQuery__
+ *
+ * To run a query within a React component, call `useGetUserReposQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserReposQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserReposQuery({
+ *   variables: {
+ *      login: // value for 'login'
+ *   },
+ * });
+ */
+export function useGetUserReposQuery(baseOptions: Apollo.QueryHookOptions<GetUserReposQuery, GetUserReposQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserReposQuery, GetUserReposQueryVariables>(GetUserReposDocument, options);
+      }
+export function useGetUserReposLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserReposQuery, GetUserReposQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserReposQuery, GetUserReposQueryVariables>(GetUserReposDocument, options);
+        }
+export type GetUserReposQueryHookResult = ReturnType<typeof useGetUserReposQuery>;
+export type GetUserReposLazyQueryHookResult = ReturnType<typeof useGetUserReposLazyQuery>;
+export type GetUserReposQueryResult = Apollo.QueryResult<GetUserReposQuery, GetUserReposQueryVariables>;
