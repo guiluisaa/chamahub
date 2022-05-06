@@ -14,7 +14,7 @@ import IndexView from '@/views/index/Index.view';
 import SearchView from '@/views/search/Search.view';
 
 // Lazy loading views
-const HistoryView = toLoadable(() => import('@/views/history/History.view'));
+const HistoryView = toLoadable(() => import('@/views/History'));
 
 const Routes: FC = () => {
   const { theme } = useTheme();
