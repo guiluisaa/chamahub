@@ -10,7 +10,7 @@ import { toLoadable } from './utils';
 
 // Views
 import Redirect404View from '@/views/404';
-import IndexView from '@/views/index/Index.view';
+import IndexView from '@/views/Index';
 import SearchView from '@/views/search/Search.view';
 
 // Lazy loading views
