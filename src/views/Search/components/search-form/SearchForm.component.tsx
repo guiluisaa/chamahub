@@ -7,10 +7,10 @@ import React, {
   useState,
 } from 'react';
 import styled from 'styled-components';
-import SharedButton from '../../../../components/button/Button.component';
+import SharedButton from '@/components/Button';
 
-import Input from '../../../../components/input/Input.component';
-import { Title as SharedTitle } from '@/components/typograph/Typograph.component';
+import Input from '@/components/Input';
+import { Title as SharedTitle } from '@/components/Typograph';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { parse } from 'query-string';
 

@@ -29,7 +29,7 @@ const UserCard: FC<UserCardProps> = ({ user }) => {
 
   return (
     <S.Wrapper>
-      <S.Avatar src={user.avatar_url} />
+      <S.Avatar src={user.avatarUrl} />
 
       <S.Title>{user.name}</S.Title>
       <Paragraph color="secondary">{user.login}</Paragraph>
