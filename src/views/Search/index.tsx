@@ -1,30 +1,13 @@
 import React, { FC, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import { parse } from 'query-string';
 
+import * as S from './styles';
+
 import SearchForm from '@/components/SearchForm';
-import SharedContainer from '@/components/Container';
-import Flexbox from '@/shared-styles/Flexbox.css';
 import useUser from '@/hooks/useUser.hook';
 import UserCard from '@/components/UserCard';
-import SharedAlert from '@/components/Alert';
 import useAbortSignal from '@/hooks/useAbortSignal.hook';
-
-const Container = styled(SharedContainer)`
-  width: 100%;
-  ${Flexbox}
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const Alert = styled(SharedAlert)`
-  width: 100%;
-  max-width: 335px;
-  margin: 0 auto;
-
-  text-align: center;
-`;
 
 const SearchView: FC = () => {
   const { user, getUser, isLoading, error } = useUser();
@@ -54,13 +37,13 @@ const SearchView: FC = () => {
   const onSearch = (term: string) => getUser(term, abortToken);
 
   return (
-    <Container>
+    <S.Wrapper>
       <SearchForm onSubmit={onSearch} isLoading={isLoading} />
 
-      {error && <Alert type="error">{error}</Alert>}
+      {error && <S.Alert type="error">{error}</S.Alert>}
 
       {user && <UserCard user={user} />}
-    </Container>
+    </S.Wrapper>
   );
 };
 
