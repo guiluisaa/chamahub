@@ -10,7 +10,7 @@ import React, {
 import * as S from './styles';
 
 import Input from '../Input';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { parse } from 'query-string';
 
 type SearchFormProps = {
@@ -53,9 +53,7 @@ const SearchForm: FC<SearchFormProps> = ({ onSubmit, isLoading }) => {
         Search
       </S.Button>
 
-      <RouterLink to="/history">
-        <S.Link>Terms history</S.Link>
-      </RouterLink>
+      <S.Link to="/history">Terms history</S.Link>
     </S.Wrapper>
   );
 };

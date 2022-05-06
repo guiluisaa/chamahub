@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link as RouterLink } from 'react-router-dom';
 
 import SharedButton from '@/components/Button';
 import { Title as SharedTitle } from '@/components/Typograph';
@@ -19,7 +20,7 @@ export const Button = styled(SharedButton)`
   margin-top: 20px;
 `;
 
-export const Link = styled.a`
+export const Link = styled(RouterLink)`
   font-family: ${({ theme }) => theme.font.family};
   color: ${({ theme }) => theme.font.color.secondary};
   font-size: 14px;
