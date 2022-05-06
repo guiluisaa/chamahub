@@ -2,7 +2,7 @@
 
 exports[`<Input /> should match snapchat 1`] = `
 <input
-  className="sc-bczRLJ iA-dVmG"
+  className="sc-bdfBwQ kFbdgg"
   placeholder="Type the username"
 />
 `;
