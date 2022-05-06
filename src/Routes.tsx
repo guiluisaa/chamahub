@@ -11,7 +11,7 @@ import { toLoadable } from './utils';
 // Views
 import Redirect404View from '@/views/404';
 import IndexView from '@/views/Index';
-import SearchView from '@/views/search/Search.view';
+import SearchView from '@/views/Search';
 
 // Lazy loading views
 const HistoryView = toLoadable(() => import('@/views/History'));
