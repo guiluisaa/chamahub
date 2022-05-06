@@ -47767,6 +47767,22 @@
             "deprecationReason": null
           },
           {
+            "name": "repositoryName",
+            "description": "The target repository name.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sourceUrl",
             "description": "The Octoshift migration source URL.",
             "args": [],
@@ -66123,6 +66139,18 @@
                   "ofType": null
                 },
                 "defaultValue": "{direction: ASC, field: CREATED_AT}",
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "repositoryName",
+                "description": "Filter repository migrations by repository name.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
                 "isDeprecated": false,
                 "deprecationReason": null
               },
@@ -103315,6 +103343,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "MigrationSource",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "repositoryName",
+            "description": "The target repository name.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
