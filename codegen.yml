@@ -3,6 +3,7 @@ schema:
   - ${GITHUB_GRAPHQL_API_URL}:
       headers:
         Authorization: Bearer ${GITHUB_GRAPHQL_API_TOKEN}
+  - "src/io/graphql/local-schema.graphql"
 
 documents: "src/**/*.graphql"
 generates:

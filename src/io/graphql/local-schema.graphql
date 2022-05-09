@@ -1,0 +1,8 @@
+enum ThemeEnum {
+  LIGHT
+  DARK
+}
+
+extend type Query {
+  theme: ThemeEnum!
+}

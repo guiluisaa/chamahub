@@ -68,6 +68,11 @@ module.exports = (env) => {
           test: /\.(jp?g|png|gif|svg|ico)$/i,
           use: [{ loader: 'file-loader', options: { outputPath: 'assets/' } }],
         },
+        {
+          test: /\.(graphql|gql)$/,
+          exclude: /node_modules/,
+          loader: 'graphql-tag/loader',
+        },
       ],
     },
 

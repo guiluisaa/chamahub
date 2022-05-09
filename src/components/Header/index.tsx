@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import * as S from './styles';
 
-import useTheme from '@/io/redux/theme/useTheme.hook';
+import useAppTheme from '@/hooks/useAppTheme.hook';
 import ThemeIcon from '../ThemeIcon';
 import Logo from '../Logo';
 
 const Header: FC = () => {
-  const { toggleTheme } = useTheme();
+  const { toggleTheme } = useAppTheme();
 
   return (
     <S.Wrapper>

@@ -15180,6 +15180,7 @@ export type Query = {
   securityVulnerabilities: SecurityVulnerabilityConnection;
   /** Users and organizations who can be sponsored via GitHub Sponsors. */
   sponsorables: SponsorableItemConnection;
+  theme: ThemeEnum;
   /** Look up a topic by name. */
   topic?: Maybe<Topic>;
   /** Lookup a user by login. */
@@ -21196,6 +21197,11 @@ export type TextMatchHighlight = {
   text: Scalars['String'];
 };
 
+export enum ThemeEnum {
+  Dark = 'DARK',
+  Light = 'LIGHT'
+}
+
 /** A topic aggregates entities that are related to a subject. */
 export type Topic = Node & Starrable & {
   __typename?: 'Topic';
@@ -23687,6 +23693,11 @@ export type WorkflowRunPendingDeploymentRequestsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+export type GetThemeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetThemeQuery = { __typename?: 'Query', theme: ThemeEnum };
+
 export type RepoInfoFragment = { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null };
 
 export type UserReposFragment = { __typename?: 'User', repositories: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null } };
@@ -23729,6 +23740,38 @@ export const UserReposFragmentDoc = gql`
   }
 }
     ${RepoInfoFragmentDoc}`;
+export const GetThemeDocument = gql`
+    query getTheme {
+  theme
+}
+    `;
+
+/**
+ * __useGetThemeQuery__
+ *
+ * To run a query within a React component, call `useGetThemeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetThemeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetThemeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetThemeQuery(baseOptions?: Apollo.QueryHookOptions<GetThemeQuery, GetThemeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetThemeQuery, GetThemeQueryVariables>(GetThemeDocument, options);
+      }
+export function useGetThemeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetThemeQuery, GetThemeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetThemeQuery, GetThemeQueryVariables>(GetThemeDocument, options);
+        }
+export type GetThemeQueryHookResult = ReturnType<typeof useGetThemeQuery>;
+export type GetThemeLazyQueryHookResult = ReturnType<typeof useGetThemeLazyQuery>;
+export type GetThemeQueryResult = Apollo.QueryResult<GetThemeQuery, GetThemeQueryVariables>;
 export const GetUserWithReposDocument = gql`
     query getUserWithRepos($login: String!) {
   user(login: $login) {
