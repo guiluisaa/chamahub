@@ -23749,9 +23749,13 @@ export type GetTermsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetTermsQuery = { __typename?: 'Query', terms: Array<{ __typename?: 'TermHistory', term: string, createdAt: string }> };
 
+export type RepoNodeInfoFragment = { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any };
+
 export type RepoInfoFragment = { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null };
 
 export type UserReposFragment = { __typename?: 'User', repositories: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null } };
+
+export type UserBasicInfoFragment = { __typename?: 'User', id: string, avatarUrl: any, name?: string | null, login: string, email: string, bio?: string | null };
 
 export type GetUserWithReposQueryVariables = Exact<{
   login: Scalars['String'];
@@ -23767,18 +23771,23 @@ export type GetUserReposQueryVariables = Exact<{
 
 export type GetUserReposQuery = { __typename?: 'Query', user?: { __typename?: 'User', repositories: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any } | null } | null> | null } } | null };
 
+export const RepoNodeInfoFragmentDoc = gql`
+    fragment RepoNodeInfo on Repository {
+  id
+  name
+  description
+  url
+}
+    `;
 export const RepoInfoFragmentDoc = gql`
     fragment RepoInfo on RepositoryConnection {
   edges {
     node {
-      id
-      name
-      description
-      url
+      ...RepoNodeInfo
     }
   }
 }
-    `;
+    ${RepoNodeInfoFragmentDoc}`;
 export const UserReposFragmentDoc = gql`
     fragment UserRepos on User {
   repositories(
@@ -23791,6 +23800,16 @@ export const UserReposFragmentDoc = gql`
   }
 }
     ${RepoInfoFragmentDoc}`;
+export const UserBasicInfoFragmentDoc = gql`
+    fragment UserBasicInfo on User {
+  id
+  avatarUrl
+  name
+  login
+  email
+  bio
+}
+    `;
 export const GetThemeDocument = gql`
     query getTheme {
   theme
@@ -23861,16 +23880,12 @@ export type GetTermsQueryResult = Apollo.QueryResult<GetTermsQuery, GetTermsQuer
 export const GetUserWithReposDocument = gql`
     query getUserWithRepos($login: String!) {
   user(login: $login) {
-    id
-    avatarUrl
-    name
-    login
-    email
-    bio
+    ...UserBasicInfo
     ...UserRepos
   }
 }
-    ${UserReposFragmentDoc}`;
+    ${UserBasicInfoFragmentDoc}
+${UserReposFragmentDoc}`;
 
 /**
  * __useGetUserWithReposQuery__

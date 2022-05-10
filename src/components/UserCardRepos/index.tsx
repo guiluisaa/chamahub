@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 
 import * as S from './styles';
 
-import { RepoModel } from '@/models/Repo.model';
 import RepoCard from '../RepoCard';
+import { RepoNodeInfoFragment } from '@graphql';
 
 type UserCardReposProps = {
-  repos: RepoModel[];
+  repos: RepoNodeInfoFragment[];
   isLoading?: boolean;
 };
 

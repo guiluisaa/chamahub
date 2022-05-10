@@ -16,7 +16,8 @@
     "lint": "scripty",
     "lint:fix": "scripty",
     "prepare": "husky install",
-    "graphql:generate": "scripty"
+    "graphql:generate": "scripty",
+    "graphql:generate:watch": "scripty"
   },
   "dependencies": {
     "@apollo/client": "^3.6.2",

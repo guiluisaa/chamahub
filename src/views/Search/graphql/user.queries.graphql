@@ -1,10 +1,14 @@
+fragment RepoNodeInfo on Repository {
+  id
+  name
+  description
+  url
+}
+
 fragment RepoInfo on RepositoryConnection {
   edges {
     node {
-      id
-      name
-      description
-      url
+      ...RepoNodeInfo
     }
   }
 }
@@ -20,14 +24,18 @@ fragment UserRepos on User {
   }
 }
 
+fragment UserBasicInfo on User {
+  id
+  avatarUrl
+  name
+  login
+  email
+  bio
+}
+
 query getUserWithRepos($login: String!) {
   user(login: $login) {
-    id
-    avatarUrl
-    name
-    login
-    email
-    bio
+    ...UserBasicInfo
     ...UserRepos
   }
 }

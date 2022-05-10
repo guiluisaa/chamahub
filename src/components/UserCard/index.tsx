@@ -2,14 +2,14 @@ import React, { FC, useEffect } from 'react';
 
 import * as S from './styles';
 
-import { UserModel } from '@/models/User.model';
+import { UserBasicInfoFragment } from '@graphql';
 import { Paragraph } from '@/components/Typograph';
 import UserCardInfo from '../UserCardInfo';
 import useUserRepos from '@/hooks/useUserRepos.hook';
 import UserCardRepos from '../UserCardRepos';
 
 type UserCardProps = {
-  user: UserModel;
+  user: UserBasicInfoFragment;
 };
 
 const UserCard: FC<UserCardProps> = ({ user }) => {

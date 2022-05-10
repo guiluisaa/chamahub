@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
 import * as S from './styles';
-import { RepoModel } from '@/models/Repo.model';
+import { RepoNodeInfoFragment } from '@graphql';
 
 type RepoCardProps = {
-  repo: RepoModel;
+  repo: RepoNodeInfoFragment;
 };
 
 const RepoCard: FC<RepoCardProps> = ({ repo }) => (
