@@ -3,6 +3,12 @@ enum ThemeEnum {
   DARK
 }
 
+type TermHistory {
+  term: String!
+  createdAt: String!
+}
+
 extend type Query {
   theme: ThemeEnum!
+  terms: [TermHistory!]!
 }

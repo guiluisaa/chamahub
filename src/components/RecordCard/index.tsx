@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 import * as S from './styles';
 
@@ -8,11 +7,9 @@ type RecordCardProps = {
 };
 
 const RecordCard: FC<RecordCardProps> = ({ term }) => (
-  <Link to={`/search?term=${term}`}>
-    <S.LinkWrapper>
-      <S.Wrapper>{term}</S.Wrapper>
-    </S.LinkWrapper>
-  </Link>
+  <S.Link to={`/search?term=${term}`}>
+    <S.Wrapper>{term}</S.Wrapper>
+  </S.Link>
 );
 
 export default RecordCard;

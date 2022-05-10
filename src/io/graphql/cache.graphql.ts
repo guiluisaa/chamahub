@@ -1,5 +1,6 @@
 import { InMemoryCache } from '@apollo/client';
 
+import termsVar from './local-vars/termsVar';
 import themeVar from './local-vars/themeVar';
 
 const cache = new InMemoryCache({
@@ -8,6 +9,9 @@ const cache = new InMemoryCache({
       fields: {
         theme: {
           read: () => themeVar(),
+        },
+        terms: {
+          read: () => termsVar(),
         },
       },
     },

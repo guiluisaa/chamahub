@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import * as S from './styles';
 
-import useHistory from '@/io/redux/history/useHistoryStore.hook';
+import useHistory from '@/hooks/useHistory.hook';
 import RecordCard from '@/components/RecordCard';
 
 const HistoryView: FC = () => {
@@ -14,7 +14,7 @@ const HistoryView: FC = () => {
 
       <S.RecordsWrapper>
         {records.map(record => (
-          <S.RecordWrapper key={record.created_at}>
+          <S.RecordWrapper key={record.createdAt}>
             <RecordCard term={record.term} />
           </S.RecordWrapper>
         ))}
