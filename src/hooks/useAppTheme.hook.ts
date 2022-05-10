@@ -7,7 +7,7 @@ const useAppTheme = () => {
   const client = useApolloClient();
   const { data } = useGetThemeQuery();
 
-  const theme = data?.theme;
+  const theme = data?.theme ?? ThemeEnum.Light;
 
   const toggleTheme = async () => {
     if (theme) {
@@ -23,7 +23,7 @@ const useAppTheme = () => {
   };
 
   return {
-    theme: theme ?? ThemeEnum.Light,
+    theme,
     toggleTheme,
   };
 };
