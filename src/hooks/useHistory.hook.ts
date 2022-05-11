@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useApolloClient } from '@apollo/client';
 
 import { useGetTermsQuery } from '@graphql';
-import termsVar from '@/io/graphql/local-vars/termsVar';
+import termsVar from '@/graphql/local-vars/termsVar';
 
 const useHistory = () => {
   const client = useApolloClient();

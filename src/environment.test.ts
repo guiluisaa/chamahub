@@ -1,4 +1,4 @@
-import { getApiUrl } from '@/io/environment';
+import { getApiUrl } from '@/environment';
 
 describe('Environment', () => {
   it('should return environment variables', () => {

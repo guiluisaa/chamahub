@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client';
 
 import { ThemeEnum, useGetThemeQuery } from '@graphql';
-import themeVar from '@/io/graphql/local-vars/themeVar';
+import themeVar from '@/graphql/local-vars/themeVar';
 
 const useAppTheme = () => {
   const client = useApolloClient();

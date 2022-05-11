@@ -12,8 +12,8 @@ import {
   getIsProd,
   getGithubGraphqlApiUrl,
   getGithubGraphqlApiToken,
-} from './io/environment';
-import cache from '@/io/graphql/cache.graphql';
+} from '@/environment';
+import cache from '@/graphql/cache';
 import typeDefs from '@/io/graphql/local-schema.graphql';
 
 const isProd = getIsProd();
@@ -28,7 +28,7 @@ if (isProd) {
 
 const client = new ApolloClient({
   uri: getGithubGraphqlApiUrl(),
-  cache: cache,
+  cache,
   headers: { Authorization: `bearer ${getGithubGraphqlApiToken()}` },
   typeDefs,
 });

@@ -23739,15 +23739,15 @@ export type WorkflowRunPendingDeploymentRequestsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
-export type GetThemeQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetThemeQuery = { __typename?: 'Query', theme: ThemeEnum };
-
 export type GetTermsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetTermsQuery = { __typename?: 'Query', terms: Array<{ __typename?: 'TermHistory', term: string, createdAt: string }> };
+
+export type GetThemeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetThemeQuery = { __typename?: 'Query', theme: ThemeEnum };
 
 export type RepoNodeInfoFragment = { __typename?: 'Repository', id: string, name: string, description?: string | null, url: any };
 
@@ -23810,38 +23810,6 @@ export const UserBasicInfoFragmentDoc = gql`
   bio
 }
     `;
-export const GetThemeDocument = gql`
-    query getTheme {
-  theme
-}
-    `;
-
-/**
- * __useGetThemeQuery__
- *
- * To run a query within a React component, call `useGetThemeQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetThemeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetThemeQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetThemeQuery(baseOptions?: Apollo.QueryHookOptions<GetThemeQuery, GetThemeQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetThemeQuery, GetThemeQueryVariables>(GetThemeDocument, options);
-      }
-export function useGetThemeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetThemeQuery, GetThemeQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetThemeQuery, GetThemeQueryVariables>(GetThemeDocument, options);
-        }
-export type GetThemeQueryHookResult = ReturnType<typeof useGetThemeQuery>;
-export type GetThemeLazyQueryHookResult = ReturnType<typeof useGetThemeLazyQuery>;
-export type GetThemeQueryResult = Apollo.QueryResult<GetThemeQuery, GetThemeQueryVariables>;
 export const GetTermsDocument = gql`
     query getTerms {
   terms {
@@ -23877,6 +23845,38 @@ export function useGetTermsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetTermsQueryHookResult = ReturnType<typeof useGetTermsQuery>;
 export type GetTermsLazyQueryHookResult = ReturnType<typeof useGetTermsLazyQuery>;
 export type GetTermsQueryResult = Apollo.QueryResult<GetTermsQuery, GetTermsQueryVariables>;
+export const GetThemeDocument = gql`
+    query getTheme {
+  theme
+}
+    `;
+
+/**
+ * __useGetThemeQuery__
+ *
+ * To run a query within a React component, call `useGetThemeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetThemeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetThemeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetThemeQuery(baseOptions?: Apollo.QueryHookOptions<GetThemeQuery, GetThemeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetThemeQuery, GetThemeQueryVariables>(GetThemeDocument, options);
+      }
+export function useGetThemeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetThemeQuery, GetThemeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetThemeQuery, GetThemeQueryVariables>(GetThemeDocument, options);
+        }
+export type GetThemeQueryHookResult = ReturnType<typeof useGetThemeQuery>;
+export type GetThemeLazyQueryHookResult = ReturnType<typeof useGetThemeLazyQuery>;
+export type GetThemeQueryResult = Apollo.QueryResult<GetThemeQuery, GetThemeQueryVariables>;
 export const GetUserWithReposDocument = gql`
     query getUserWithRepos($login: String!) {
   user(login: $login) {
