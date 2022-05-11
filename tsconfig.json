@@ -22,7 +22,9 @@
     "resolveJsonModule": true,
     "jsx": "react",
     "baseUrl": ".",
+    "typeRoots": ["node_modules/@types", "src/@types"],
     "paths": {
+      "@graphql": ["./src/generated/graphql.tsx"],
       "@": ["./src/index.tsx"],
       "@/*": ["./src/*"]
     }

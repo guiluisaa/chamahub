@@ -10,7 +10,7 @@ module.exports = (env) => {
   const environment = env && env.ENVIRONMENT ?  env.ENVIRONMENT : process.env.ENVIRONMENT;
 
   // Define the environment file path
-  const envPath = path.join(__dirname, `./config/.env.${environment}`);
+  const envPath = path.join(__dirname, `./.env.${environment}`);
 
   // Start DotEnv
   const envVariables = dotenv.config({ path: envPath }).parsed || process.env;
@@ -67,6 +67,11 @@ module.exports = (env) => {
         {
           test: /\.(jp?g|png|gif|svg|ico)$/i,
           use: [{ loader: 'file-loader', options: { outputPath: 'assets/' } }],
+        },
+        {
+          test: /\.(graphql|gql)$/,
+          exclude: /node_modules/,
+          loader: 'graphql-tag/loader',
         },
       ],
     },

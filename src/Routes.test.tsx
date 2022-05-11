@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import Routes from '@/Routes';
 
-jest.mock('@/io/redux/theme/useTheme.hook', () => () => ({
+jest.mock('@/hooks/useAppTheme.hook', () => () => ({
   theme: {},
   toggleTheme: jest.fn(),
 }));

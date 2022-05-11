@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   font-size: 14px;
@@ -14,7 +15,7 @@ export const Wrapper = styled.div`
   border-radius: ${({ theme }) => theme.border.radius};
 `;
 
-export const LinkWrapper = styled.a`
+export const Link = styled(RouterLink)`
   color: ${({ theme }) => theme.color.blue};
   text-decoration: none;
 

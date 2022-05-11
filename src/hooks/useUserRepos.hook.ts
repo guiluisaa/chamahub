@@ -1,33 +1,26 @@
-import { useCallback, useState } from 'react';
-import { CancelToken } from 'axios';
+import { useCallback, useMemo } from 'react';
 
-import { RepoModel } from '@/models/Repo.model';
-import getUserReposService from '../io/services/user/getUserRepos.service';
+import { useGetUserReposLazyQuery } from '@graphql';
 
 const useUserRepos = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [repos, setRepos] = useState<RepoModel[]>([]);
-  const [error, setError] = useState('');
+  const [
+    getUserReposQuery,
+    { loading, error, data },
+  ] = useGetUserReposLazyQuery();
 
-  const getUserRepos = useCallback(
-    async (username: string, abortSignal?: CancelToken) => {
-      setError('');
-      setIsLoading(true);
-      try {
-        const repos = await getUserReposService(username, abortSignal);
-        setRepos(repos);
-      } catch (error) {
-        setError(error.response.data.message);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    []
-  );
+  const edges = data?.user?.repositories.edges;
+
+  const repos = useMemo(() => {
+    return edges ? edges.map(edges => edges?.node!) : [];
+  }, [data?.user?.repositories.edges]);
+
+  const getUserRepos = useCallback(async (username: string) => {
+    getUserReposQuery({ variables: { login: username } });
+  }, []);
 
   return {
     repos,
-    isLoading,
+    isLoading: loading,
     error,
 
     getUserRepos,

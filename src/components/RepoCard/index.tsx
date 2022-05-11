@@ -1,22 +1,22 @@
 import React, { FC } from 'react';
 
 import * as S from './styles';
-import { RepoModel } from '@/models/Repo.model';
+import { RepoNodeInfoFragment } from '@graphql';
 
 type RepoCardProps = {
-  repo: RepoModel;
+  repo: RepoNodeInfoFragment;
 };
 
 const RepoCard: FC<RepoCardProps> = ({ repo }) => (
   <S.Wrapper>
-    <S.Link href={repo.html_url} target="_blank">
+    <S.Link href={repo.url} target="_blank">
       <S.Name>{repo.name}</S.Name>
     </S.Link>
 
     <S.Description color="secondary">{repo.description}</S.Description>
 
-    <S.Link href={repo.html_url} target="_blank">
-      <S.Url>{repo.html_url}</S.Url>
+    <S.Link href={repo.url} target="_blank">
+      <S.Url>{repo.url}</S.Url>
     </S.Link>
   </S.Wrapper>
 );

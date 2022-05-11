@@ -6,11 +6,11 @@ import { Paragraph } from '../Typograph';
 
 type UserCardInfoProps = {
   label: string;
-  text: string | null;
+  text?: string | null;
 };
 
 const UserCardInfo: FC<UserCardInfoProps> = ({ label, text }) => {
-  const isNull = useMemo(() => text === null, [text]);
+  const isNull = useMemo(() => text === '' || text === null, [text]);
 
   return (
     <S.Wrapper>

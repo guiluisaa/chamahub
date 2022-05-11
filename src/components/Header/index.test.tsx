@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import Header from '@/components/Header';
 
-jest.mock('@/io/redux/theme/useTheme.hook', () => () => ({
+jest.mock('@/hooks/useAppTheme.hook', () => () => ({
   toggleTheme: jest.fn(),
 }));
 

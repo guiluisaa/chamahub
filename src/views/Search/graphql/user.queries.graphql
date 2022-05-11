@@ -1,0 +1,47 @@
+fragment RepoNodeInfo on Repository {
+  id
+  name
+  description
+  url
+}
+
+fragment RepoInfo on RepositoryConnection {
+  edges {
+    node {
+      ...RepoNodeInfo
+    }
+  }
+}
+
+fragment UserRepos on User {
+  repositories(
+    first: 4
+    orderBy: { field: UPDATED_AT, direction: DESC }
+    affiliations: OWNER
+    privacy: PUBLIC
+  ) {
+    ...RepoInfo
+  }
+}
+
+fragment UserBasicInfo on User {
+  id
+  avatarUrl
+  name
+  login
+  email
+  bio
+}
+
+query getUserWithRepos($login: String!) {
+  user(login: $login) {
+    ...UserBasicInfo
+    ...UserRepos
+  }
+}
+
+query getUserRepos($login: String!) {
+  user(login: $login) {
+    ...UserRepos
+  }
+}

@@ -24,6 +24,15 @@ You will need the following things properly installed on your computer:
 - `yarn start:local`
 - Visit the app at [http://localhost:4200](http://localhost:4200).
 
+You must create a file `.env.local`:
+
+```bash
+# urls
+API_URL=""
+GITHUB_GRAPHQL_API_URL=""
+GITHUB_GRAPHQL_API_TOKEN=""
+```
+
 ## Building
 
 ```bash

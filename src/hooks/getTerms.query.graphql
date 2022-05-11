@@ -1,0 +1,6 @@
+query getTerms {
+  terms {
+    term
+    createdAt
+  }
+}
