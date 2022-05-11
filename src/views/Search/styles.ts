@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 import SharedContainer from '@/components/Container';
-import Flexbox from '@/shared-styles/Flexbox.css';
+
 import SharedAlert from '@/components/Alert';
 
 export const Wrapper = styled(SharedContainer)`
   width: 100%;
-  ${Flexbox}
+  display: flex;
   flex-direction: column;
   justify-content: center;
 `;
