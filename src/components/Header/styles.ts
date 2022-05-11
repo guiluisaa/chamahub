@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import Flexbox from '@/shared-styles/Flexbox.css';
 import SharedContainer from '../Container';
 
 export const Wrapper = styled.header`
@@ -9,7 +8,7 @@ export const Wrapper = styled.header`
 `;
 
 export const Container = styled(SharedContainer)`
-  ${Flexbox}
+  display: flex;
   justify-content: center;
   position: relative;
 `;

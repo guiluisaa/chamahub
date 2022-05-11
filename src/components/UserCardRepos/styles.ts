@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
-import Flexbox from '@/shared-styles/Flexbox.css';
-
 export const Wrapper = styled.div`
   margin: 0 -10px;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoint.lg}px`}) {
-    ${Flexbox}
+    display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
