@@ -14,7 +14,7 @@ import {
   getGithubGraphqlApiToken,
 } from '@/environment';
 import cache from '@/graphql/cache';
-import typeDefs from '@/io/graphql/local-schema.graphql';
+import typeDefs from '@/graphql/local-schema.graphql';
 
 const isProd = getIsProd();
 
