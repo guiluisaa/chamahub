@@ -58,7 +58,10 @@ module.exports = () => {
         '@': path.join(__dirname, './src'),
       },
       fallback: {
-        "process": require.resolve("process/browser"),
+        process: require.resolve('process/browser'),
+        stream: require.resolve('stream-browserify'),
+        buffer: require.resolve('buffer/'),
+        util: require.resolve('util/'),
       },
     },
 
@@ -86,6 +89,7 @@ module.exports = () => {
       new webpack.DefinePlugin(envKeys),
       new webpack.ProvidePlugin({
         process: 'process/browser',
+        Buffer: ['buffer', 'Buffer'],
       }),
       new ForkTsCheckerWebpackPlugin(),
       new HtmlWebpackPlugin({

@@ -14,8 +14,8 @@ const HistoryView: FC = () => {
 
       <S.RecordsWrapper>
         {records.map(record => (
-          <S.RecordWrapper key={record.created_at}>
-            <RecordCard term={record.login} />
+          <S.RecordWrapper key={record}>
+            <RecordCard term={record} />
           </S.RecordWrapper>
         ))}
       </S.RecordsWrapper>

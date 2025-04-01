@@ -1,30 +1,33 @@
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import useHistory from '@/hooks/useHistory.hook';
+import { getUser } from '@/io/api';
 
 const useUser = (term?: string) => {
-  const { addRecord } = useHistory();
-
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['user', term],
-    queryFn: async () => {
-      if (!term) return null;
-      // Replace with actual API call
-      const response = await fetch(`https://api.github.com/users/${term}`);
-      return response.json();
-    },
+  const {
+    data: user,
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
     enabled: !!term,
+    queryKey: ['user', term],
+    queryFn: () => {
+      const terms = localStorage.getItem('terms');
+
+      const termsArray = terms ? JSON.parse(terms) : [];
+
+      if (!terms) {
+        localStorage.setItem('terms', JSON.stringify([term]));
+      } else {
+        localStorage.setItem('terms', JSON.stringify([...termsArray, term]));
+      }
+
+      return getUser(term ?? '');
+    },
   });
 
-  useEffect(() => {
-    if (data?.login) {
-      addRecord(data.login);
-    }
-  }, [data, addRecord]);
-
   return {
-    user: data,
+    user,
     loading: isLoading,
     error,
     refetch,

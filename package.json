@@ -22,9 +22,11 @@
     "@sentry/react": "^7.101.1",
     "@sentry/tracing": "^7.101.1",
     "@tanstack/react-query": "^5.71.1",
+    "axios": "0.27.2",
+    "buffer": "^6.0.3",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.36.0",
-    "process": "^0.11.10",
+    "process": "0.11.10",
     "query-string": "^8.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -32,8 +34,10 @@
     "react-router-dom": "^7.4.1",
     "regenerator-runtime": "^0.14.1",
     "scripty": "^2.0.0",
+    "stream-browserify": "^3.0.0",
     "styled-components": "^6.1.8",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
