@@ -2,25 +2,22 @@ import React, { lazy, Suspense } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
 } from 'react-router-dom';
 
 // Views
-import Redirect404View from '@/views/404';
-import IndexView from '@/views/Index';
 import SearchView from '@/views/Search';
 import Layout from './components/Layout';
 
 // Lazy loading views
 const HistoryView = lazy(() => import('@/views/History'));
 
-// createRoutesFromElements
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<Layout />}>
-      <Route path="/" element={<IndexView />} />
+      <Route path="/" element={<Navigate to="/search" />} />
       <Route path="/search" element={<SearchView />} />
       <Route
         path="/history"
@@ -30,7 +27,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-      <Route path="*" element={<Redirect404View />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Route>,
   ),
 );

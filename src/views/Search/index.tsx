@@ -28,7 +28,11 @@ const SearchView: FC = () => {
 
   return (
     <S.Wrapper>
-      <SearchForm onSubmit={onSearch} isLoading={loading} />
+      <SearchForm
+        defaultTerm={queryTerm ?? undefined}
+        onSubmit={onSearch}
+        isLoading={loading}
+      />
 
       {error && <S.Alert type="error">{error.message}</S.Alert>}
 
