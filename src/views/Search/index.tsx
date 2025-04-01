@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
-import { parse } from 'query-string';
+import React, { FC, useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import * as S from './styles';
 
@@ -9,30 +8,36 @@ import useUser from '@/hooks/useUser.hook';
 import UserCard from '@/components/UserCard';
 
 const SearchView: FC = () => {
-  const { user, getUser, loading, error } = useUser();
-  const {
-    replace,
-    location: { search },
-  } = useHistory();
+  const [term, setTerm] = useState<string | null>(null);
 
-  const { term: queryTerm } = useMemo(() => parse(search) as { term: string }, [
-    search,
-  ]);
+  const location = useLocation();
+  const queryParam = new URLSearchParams(location.search);
 
-  useEffect(() => {
-    if (queryTerm) onSearch(queryTerm);
-  }, []);
+  const queryTerm = queryParam.get('term');
+
+  const { user, loading, error, refetch } = useUser(
+    term ?? queryTerm ?? undefined,
+  );
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) replace(`/search?term=${user.login}`);
-    if (error) replace(`/search`);
+    if (term) refetch();
+  }, [term]);
+
+  useEffect(() => {
+    if (user) navigate(`/search?term=${user.login}`);
+    if (error) navigate('/search');
   }, [user, error]);
 
-  const onSearch = (term: string) => getUser(term);
+  const onSearch = (term: string) => setTerm(term);
 
   return (
     <S.Wrapper>
-      <SearchForm onSubmit={onSearch} isLoading={loading} />
+      <SearchForm
+        defaultTerm={queryTerm ?? undefined}
+        onSubmit={onSearch}
+        isLoading={loading}
+      />
 
       {error && <S.Alert type="error">{error.message}</S.Alert>}
 

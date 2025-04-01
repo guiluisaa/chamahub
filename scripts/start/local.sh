@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "🚀  Bootstraping the application! ..."
-webpack-dev-server --mode development --env.ENVIRONMENT=local --config ./webpack.config.js
+ENVIRONMENT=local webpack-dev-server --mode development --config ./webpack.config.js

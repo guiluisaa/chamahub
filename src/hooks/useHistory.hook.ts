@@ -1,32 +1,17 @@
-import { useCallback } from 'react';
-import { useApolloClient } from '@apollo/client';
-
-import { useGetTermsQuery } from '@graphql';
-import termsVar from '@/graphql/local-vars/termsVar';
+import { useQuery } from '@tanstack/react-query';
 
 const useHistory = () => {
-  const client = useApolloClient();
-  const { data, loading } = useGetTermsQuery();
-
-  const records = data?.terms ?? [];
-
-  const addRecord = useCallback((term: string) => {
-    client.cache.evict({ fieldName: 'terms' });
-    client.cache.gc();
-
-    const newTermsArray = [
-      { term, createdAt: new Date().toISOString() },
-      ...records,
-    ];
-
-    localStorage.setItem('terms', JSON.stringify(newTermsArray));
-    termsVar(newTermsArray);
-  }, []);
+  const { data: records = [], isLoading } = useQuery<string[]>({
+    queryKey: ['terms'],
+    queryFn: () => {
+      const terms = localStorage.getItem('terms');
+      return terms ? JSON.parse(terms) : [];
+    },
+  });
 
   return {
     records,
-    isLoading: loading,
-    addRecord,
+    isLoading,
   };
 };
 

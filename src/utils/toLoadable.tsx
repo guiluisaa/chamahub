@@ -23,16 +23,16 @@ type Factory<T extends ComponentType<any>> = () => Promise<{
  *
  * @param factory
  */
-const toLoadable = <T extends ComponentType<any>>(factory: Factory<T>) => ({
-  ...props
-}: ComponentPropsWithRef<T>): ReactElement => {
-  const Component = lazy(factory);
+const toLoadable =
+  <T extends ComponentType<any>>(factory: Factory<T>) =>
+  ({ ...props }: ComponentPropsWithRef<T>): ReactElement => {
+    const Component = lazy(factory);
 
-  return (
-    <Suspense fallback={<>Loading...</>}>
-      <Component {...props} />
-    </Suspense>
-  );
-};
+    return (
+      <Suspense fallback={<>Loading...</>}>
+        <Component {...props} />
+      </Suspense>
+    );
+  };
 
 export default toLoadable;

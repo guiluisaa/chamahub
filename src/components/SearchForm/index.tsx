@@ -1,34 +1,25 @@
-import React, {
-  ChangeEvent,
-  FC,
-  FormEvent,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 
 import * as S from './styles';
 
 import Input from '../Input';
-import { useLocation } from 'react-router-dom';
-import { parse } from 'query-string';
 
 type SearchFormProps = {
   onSubmit: (term: string) => void;
   isLoading?: boolean;
+  defaultTerm?: string;
 };
 
-const SearchForm: FC<SearchFormProps> = ({ onSubmit, isLoading }) => {
+const SearchForm: FC<SearchFormProps> = ({
+  onSubmit,
+  isLoading,
+  defaultTerm,
+}) => {
   const [term, setTerm] = useState('');
-  const { search } = useLocation();
-
-  const { term: queryTerm } = useMemo(() => parse(search) as { term: string }, [
-    search,
-  ]);
 
   useEffect(() => {
-    if (queryTerm) setTerm(queryTerm);
-  }, []);
+    if (defaultTerm) setTerm(defaultTerm);
+  }, [defaultTerm]);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) =>
     setTerm(event.target.value);

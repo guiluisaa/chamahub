@@ -23,7 +23,6 @@
       {
         "root": ["."],
         "alias": {
-          "@graphql": "./src/generated/graphql.tsx",
           "@": "./src/",
           "@/*": "./src/*"
         }

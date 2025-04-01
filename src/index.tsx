@@ -1,20 +1,15 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
-import { ApolloClient, ApolloProvider } from '@apollo/client';
 
 import App from './App';
-import {
-  getSentryDns,
-  getIsProd,
-  getGithubGraphqlApiUrl,
-  getGithubGraphqlApiToken,
-} from '@/environment';
-import cache from '@/graphql/cache';
-import typeDefs from '@/graphql/local-schema.graphql';
+import { getSentryDns, getIsProd } from '@/environment';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const isProd = getIsProd();
 
@@ -26,16 +21,13 @@ if (isProd) {
   });
 }
 
-const client = new ApolloClient({
-  uri: getGithubGraphqlApiUrl(),
-  cache,
-  headers: { Authorization: `bearer ${getGithubGraphqlApiToken()}` },
-  typeDefs,
-});
-
-render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement,
+);
+root.render(
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </StrictMode>,
 );

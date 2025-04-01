@@ -1,33 +1,36 @@
-import { useCallback, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { useGetUserWithReposLazyQuery } from '@graphql';
-import useHistory from '@/hooks/useHistory.hook';
+import { getUser } from '@/io/api';
 
-const useUser = () => {
-  const [
-    getUserQuery,
-    { loading, error, data },
-  ] = useGetUserWithReposLazyQuery();
+const useUser = (term?: string) => {
+  const {
+    data: user,
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
+    enabled: !!term,
+    queryKey: ['user', term],
+    queryFn: () => {
+      const terms = localStorage.getItem('terms');
 
-  const { addRecord } = useHistory();
+      const termsArray = terms ? JSON.parse(terms) : [];
 
-  useEffect(() => {
-    if (data?.user?.login) addRecord(data?.user.login);
-  }, [data?.user]);
+      if (!terms) {
+        localStorage.setItem('terms', JSON.stringify([term]));
+      } else {
+        localStorage.setItem('terms', JSON.stringify([term, ...termsArray]));
+      }
 
-  const getUser = useCallback(
-    (term: string) => {
-      getUserQuery({ variables: { login: term } });
+      return getUser(term ?? '');
     },
-    [getUserQuery]
-  );
+  });
 
   return {
-    user: data?.user,
-    loading,
+    user,
+    loading: isLoading,
     error,
-
-    getUser,
+    refetch,
   };
 };
 

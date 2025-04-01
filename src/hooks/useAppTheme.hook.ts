@@ -1,29 +1,23 @@
-import { useApolloClient } from '@apollo/client';
-
-import { ThemeEnum, useGetThemeQuery } from '@graphql';
-import themeVar from '@/graphql/local-vars/themeVar';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 const useAppTheme = () => {
-  const client = useApolloClient();
-  const { data } = useGetThemeQuery();
+  const queryClient = useQueryClient();
 
-  const theme = data?.theme ?? ThemeEnum.Light;
+  const { data } = useQuery({
+    queryKey: ['theme'],
+    queryFn: () => {
+      return localStorage.getItem('theme') || 'light';
+    },
+  });
 
-  const toggleTheme = async () => {
-    if (theme) {
-      client.cache.evict({ fieldName: 'theme' });
-      client.cache.gc();
-
-      const newTheme =
-        theme === ThemeEnum.Light ? ThemeEnum.Dark : ThemeEnum.Light;
-
-      localStorage.setItem('theme', newTheme);
-      themeVar(newTheme);
-    }
+  const toggleTheme = () => {
+    const newTheme = data === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    queryClient.invalidateQueries({ queryKey: ['theme'] });
   };
 
   return {
-    theme,
+    theme: data,
     toggleTheme,
   };
 };

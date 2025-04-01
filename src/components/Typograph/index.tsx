@@ -10,13 +10,13 @@ export const BaseTypographCSS = css<BaseTypographCSSProps>`
     color ? theme.font.color[color] : theme.font.color.primary};
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h2<BaseTypographCSSProps>`
   ${BaseTypographCSS}
   font-size: 32px;
   line-height: 42px;
 `;
 
-export const Paragraph = styled.p`
+export const Paragraph = styled.p<BaseTypographCSSProps>`
   ${BaseTypographCSS}
   font-size: 14px;
   line-height: 20px;

@@ -3,10 +3,10 @@ import React, { FC } from 'react';
 import * as S from './styles';
 
 import RepoCard from '../RepoCard';
-import { RepoNodeInfoFragment } from '@graphql';
+import { Repository } from '@/@types/repository';
 
 type UserCardReposProps = {
-  repos: RepoNodeInfoFragment[];
+  repos: Repository[];
   isLoading?: boolean;
 };
 

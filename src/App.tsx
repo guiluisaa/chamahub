@@ -1,8 +1,23 @@
 import React, { FC } from 'react';
-import { hot } from 'react-hot-loader';
 
-import Routes from './Routes';
+import { lightTheme } from './themes';
+import { ThemeProvider } from 'styled-components';
+import { AppRoutes } from './Routes';
 
-const App: FC = () => <Routes />;
+import GlobalStyle from './shared-styles/GlobalStyle';
+import { darkTheme } from './themes';
+import useAppTheme from './hooks/useAppTheme.hook';
 
-export default hot(module)(App);
+const App: FC = () => {
+  const { theme } = useAppTheme();
+
+  return (
+    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+      <GlobalStyle />
+
+      <AppRoutes />
+    </ThemeProvider>
+  );
+};
+
+export default App;

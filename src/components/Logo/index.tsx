@@ -7,11 +7,10 @@ const Logo: FC = () => {
     color: { blue, white },
   } = useTheme();
 
-  const logoColor = useMemo(() => (theme === 'dark' ? white : blue), [
-    theme,
-    blue,
-    white,
-  ]);
+  const logoColor = useMemo(
+    () => (theme === 'dark' ? white : blue),
+    [theme, blue, white],
+  );
 
   return (
     <svg

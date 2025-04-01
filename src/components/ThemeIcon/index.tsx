@@ -7,11 +7,10 @@ const ThemeIcon: FC = () => {
     color: { black, white },
   } = useTheme();
 
-  const iconColor = useMemo(() => (theme === 'dark' ? white : black), [
-    theme,
-    black,
-    white,
-  ]);
+  const iconColor = useMemo(
+    () => (theme === 'dark' ? white : black),
+    [theme, black, white],
+  );
 
   return (
     <svg
