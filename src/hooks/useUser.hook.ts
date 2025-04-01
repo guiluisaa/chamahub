@@ -19,7 +19,7 @@ const useUser = (term?: string) => {
       if (!terms) {
         localStorage.setItem('terms', JSON.stringify([term]));
       } else {
-        localStorage.setItem('terms', JSON.stringify([...termsArray, term]));
+        localStorage.setItem('terms', JSON.stringify([term, ...termsArray]));
       }
 
       return getUser(term ?? '');
