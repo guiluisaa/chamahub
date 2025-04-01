@@ -1,31 +1,33 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { useGetUserWithReposLazyQuery } from '@graphql';
 import useHistory from '@/hooks/useHistory.hook';
 
-const useUser = () => {
-  const [getUserQuery, { loading, error, data }] =
-    useGetUserWithReposLazyQuery();
-
+const useUser = (term?: string) => {
   const { addRecord } = useHistory();
 
-  useEffect(() => {
-    if (data?.user?.login) addRecord(data?.user.login);
-  }, [data?.user]);
-
-  const getUser = useCallback(
-    (term: string) => {
-      getUserQuery({ variables: { login: term } });
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['user', term],
+    queryFn: async () => {
+      if (!term) return null;
+      // Replace with actual API call
+      const response = await fetch(`https://api.github.com/users/${term}`);
+      return response.json();
     },
-    [getUserQuery],
-  );
+    enabled: !!term,
+  });
+
+  useEffect(() => {
+    if (data?.login) {
+      addRecord(data.login);
+    }
+  }, [data, addRecord]);
 
   return {
-    user: data?.user,
-    loading,
+    user: data,
+    loading: isLoading,
     error,
-
-    getUser,
+    refetch,
   };
 };
 

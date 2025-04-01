@@ -1,27 +1,29 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { useGetUserReposLazyQuery } from '@graphql';
+import { Repository } from '@/@types/repository';
 
-const useUserRepos = () => {
-  const [getUserReposQuery, { loading, error, data }] =
-    useGetUserReposLazyQuery();
-
-  const edges = data?.user?.repositories.edges;
+const useUserRepos = (username?: string) => {
+  const { data, isLoading, error } = useQuery<Repository[]>({
+    queryKey: ['userRepos', username],
+    queryFn: async () => {
+      if (!username) return null;
+      const response = await fetch(
+        `https://api.github.com/users/${username}/repos`,
+      );
+      return response.json();
+    },
+    enabled: !!username,
+  });
 
   const repos = useMemo(() => {
-    return edges ? edges.map(edges => edges?.node!) : [];
-  }, [data?.user?.repositories.edges]);
-
-  const getUserRepos = useCallback(async (username: string) => {
-    getUserReposQuery({ variables: { login: username } });
-  }, []);
+    return data || [];
+  }, [data]);
 
   return {
     repos,
-    isLoading: loading,
+    isLoading,
     error,
-
-    getUserRepos,
   };
 };
 

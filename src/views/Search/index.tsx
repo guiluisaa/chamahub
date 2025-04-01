@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import * as S from './styles';
@@ -8,23 +8,28 @@ import useUser from '@/hooks/useUser.hook';
 import UserCard from '@/components/UserCard';
 
 const SearchView: FC = () => {
-  const { user, getUser, loading, error } = useUser();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [term, setTerm] = useState<string | null>(null);
 
+  const location = useLocation();
   const queryParam = new URLSearchParams(location.search);
+
   const queryTerm = queryParam.get('term');
 
+  const { user, loading, error, refetch } = useUser(
+    term ?? queryTerm ?? undefined,
+  );
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (queryTerm) onSearch(queryTerm);
-  }, []);
+    if (term) refetch();
+  }, [term]);
 
   useEffect(() => {
     if (user) navigate(`/search?term=${user.login}`);
     if (error) navigate('/search');
   }, [user, error]);
 
-  const onSearch = (term: string) => getUser(term);
+  const onSearch = (term: string) => setTerm(term);
 
   return (
     <S.Wrapper>

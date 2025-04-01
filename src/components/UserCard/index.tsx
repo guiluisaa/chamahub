@@ -1,27 +1,23 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import * as S from './styles';
 
-import { UserBasicInfoFragment } from '@graphql';
 import { Paragraph } from '@/components/Typograph';
 import UserCardInfo from '../UserCardInfo';
 import useUserRepos from '@/hooks/useUserRepos.hook';
 import UserCardRepos from '../UserCardRepos';
+import { User } from '@/@types/user';
 
 type UserCardProps = {
-  user: UserBasicInfoFragment;
+  user: User;
 };
 
 const UserCard: FC<UserCardProps> = ({ user }) => {
-  const { repos, getUserRepos, isLoading } = useUserRepos();
-
-  useEffect(() => {
-    getUserRepos(user.login);
-  }, [user]);
+  const { repos, isLoading } = useUserRepos();
 
   return (
     <S.Wrapper>
-      <S.Avatar src={user.avatarUrl} />
+      <S.Avatar src={user.avatar_url} />
 
       <S.Title>{user.name}</S.Title>
       <Paragraph color="secondary">{user.login}</Paragraph>

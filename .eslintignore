@@ -1,2 +1,4 @@
 *.js
-src/generated/graphql.tsx
+*.test.tsx
+*.test.ts
+

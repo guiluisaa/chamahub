@@ -29,8 +29,8 @@ You must create a file `.env.local`:
 ```bash
 # urls
 API_URL=""
-GITHUB_GRAPHQL_API_URL=""
-GITHUB_GRAPHQL_API_TOKEN=""
+GITHUB_API_URL=""
+GITHUB_API_TOKEN=""
 ```
 
 ## Building
