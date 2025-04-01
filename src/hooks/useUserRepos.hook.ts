@@ -3,10 +3,8 @@ import { useCallback, useMemo } from 'react';
 import { useGetUserReposLazyQuery } from '@graphql';
 
 const useUserRepos = () => {
-  const [
-    getUserReposQuery,
-    { loading, error, data },
-  ] = useGetUserReposLazyQuery();
+  const [getUserReposQuery, { loading, error, data }] =
+    useGetUserReposLazyQuery();
 
   const edges = data?.user?.repositories.edges;
 

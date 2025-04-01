@@ -30,7 +30,7 @@ describe('<Title />', () => {
 describe('<Paragraph />', () => {
   it('should match snapchat', () => {
     const wrapper = shallow(
-      <Paragraph theme={lightTheme}>Some Text</Paragraph>
+      <Paragraph theme={lightTheme}>Some Text</Paragraph>,
     );
     expect(wrapper).toMatchSnapshot();
   });

@@ -4,10 +4,8 @@ import { useGetUserWithReposLazyQuery } from '@graphql';
 import useHistory from '@/hooks/useHistory.hook';
 
 const useUser = () => {
-  const [
-    getUserQuery,
-    { loading, error, data },
-  ] = useGetUserWithReposLazyQuery();
+  const [getUserQuery, { loading, error, data }] =
+    useGetUserWithReposLazyQuery();
 
   const { addRecord } = useHistory();
 
@@ -19,7 +17,7 @@ const useUser = () => {
     (term: string) => {
       getUserQuery({ variables: { login: term } });
     },
-    [getUserQuery]
+    [getUserQuery],
   );
 
   return {
