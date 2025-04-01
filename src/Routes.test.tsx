@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Routes from '@/Routes';
+import { AppRoutes } from '@/Routes';
 
 jest.mock('@/hooks/useAppTheme.hook', () => () => ({
   theme: {},
@@ -10,7 +10,7 @@ jest.mock('@/hooks/useAppTheme.hook', () => () => ({
 
 describe('<Routes />', () => {
   it('should match snapchat', () => {
-    const wrapper = shallow(<Routes />);
+    const wrapper = shallow(<AppRoutes />);
     expect(wrapper).toMatchSnapshot();
   });
 });

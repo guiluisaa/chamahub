@@ -1,6 +1,11 @@
-import React, { FC } from 'react';
-import { Redirect } from 'react-router-dom';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Redirect404View: FC = () => <Redirect to="/" />;
+const Redirect404View: FC = () => {
+  const navigate = useNavigate();
+  navigate('/');
+
+  return null;
+};
 
 export default Redirect404View;

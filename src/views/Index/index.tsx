@@ -1,7 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { Redirect } from 'react-router-dom';
+const IndexView: FC = () => {
+  const navigate = useNavigate();
+  navigate('/search');
 
-const IndexView: FC = () => <Redirect to="/search" />;
+  return null;
+};
 
 export default IndexView;

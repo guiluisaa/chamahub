@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
-import { parse } from 'query-string';
+import React, { FC, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import * as S from './styles';
 
@@ -10,22 +9,19 @@ import UserCard from '@/components/UserCard';
 
 const SearchView: FC = () => {
   const { user, getUser, loading, error } = useUser();
-  const {
-    replace,
-    location: { search },
-  } = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const { term: queryTerm } = useMemo(() => parse(search) as { term: string }, [
-    search,
-  ]);
+  const queryParam = new URLSearchParams(location.search);
+  const queryTerm = queryParam.get('term');
 
   useEffect(() => {
     if (queryTerm) onSearch(queryTerm);
   }, []);
 
   useEffect(() => {
-    if (user) replace(`/search?term=${user.login}`);
-    if (error) replace(`/search`);
+    if (user) navigate(`/search?term=${user.login}`);
+    if (error) navigate('/search');
   }, [user, error]);
 
   const onSearch = (term: string) => getUser(term);
